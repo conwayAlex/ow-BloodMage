@@ -6,25 +6,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 // RENAME 'OutwardModTemplate' TO SOMETHING ELSE
-namespace OutwardModTemplate
+namespace BloodMage
 {
     [BepInPlugin(GUID, NAME, VERSION)]
-    public class Plugin : BaseUnityPlugin
+    public class BloodMage : BaseUnityPlugin
     {
         // Choose a GUID for your project. Change "myname" and "mymod".
-        public const string GUID = "myname.mymod";
+        public const string GUID = "BloodMage.mod";
         // Choose a NAME for your project, generally the same as your Assembly Name.
-        public const string NAME = "My Mod";
+        public const string NAME = "Blood Mage";
         // Increment the VERSION when you release a new version of your mod.
-        public const string VERSION = "1.0.0";
+        public const string VERSION = "0.1.1";
 
         // For accessing your BepInEx Logger from outside of this class (eg Plugin.Log.LogMessage("");)
         internal static ManualLogSource Log;
 
         // If you need settings, define them like so:
-        public static ConfigEntry<bool> ExampleConfig;
+        //public static ConfigEntry<bool> ExampleConfig;
 
         // Awake is called when your plugin is created. Use this to set up your mod.
         internal void Awake()
@@ -33,10 +34,10 @@ namespace OutwardModTemplate
             Log.LogMessage($"Hello world from {NAME} {VERSION}!");
 
             // Any config settings you define should be set up like this:
-            ExampleConfig = Config.Bind("ExampleCategory", "ExampleSetting", false, "This is an example setting.");
+            //ExampleConfig = Config.Bind("ExampleCategory", "ExampleSetting", false, "This is an example setting.");
 
             // Harmony is for patching methods. If you're not patching anything, you can comment-out or delete this line.
-            new Harmony(GUID).PatchAll();
+            //new Harmony(GUID).PatchAll();
         }
 
         // Update is called once per frame. Use this only if needed.
@@ -48,15 +49,15 @@ namespace OutwardModTemplate
 
         // This is an example of a Harmony patch.
         // If you're not using this, you should delete it.
-        [HarmonyPatch(typeof(ResourcesPrefabManager), nameof(ResourcesPrefabManager.Load))]
-        public class ResourcesPrefabManager_Load
-        {
-            static void Postfix()
-            {
+        //[HarmonyPatch(typeof(ResourcesPrefabManager), nameof(ResourcesPrefabManager.Load))]
+        //public class ResourcesPrefabManager_Load
+        //{
+            //static void Postfix()
+            //{
                 // This is a "Postfix" (runs after original) on ResourcesPrefabManager.Load
                 // For more documentation on Harmony, see the Harmony Wiki.
                 // https://harmony.pardeike.net/
-            }
-        }
+            //}
+        //}
     }
 }
