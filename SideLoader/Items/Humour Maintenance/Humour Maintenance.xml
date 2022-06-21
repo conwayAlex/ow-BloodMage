@@ -2,8 +2,8 @@
 <SL_Skill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Target_ItemID>8205070</Target_ItemID>
   <New_ItemID>-28003</New_ItemID>
-  <Name>Humour Maintenence</Name>
-  <Description>While bleeding, decay damage and resistence is increased. Extreme Bleeding amplifies this effect.</Description>
+  <Name>Humour Maintenance</Name>
+  <Description>While bleeding, decay damage and resistance is increased. Extreme Bleeding amplifies this effect.</Description>
   <LegacyItemID>-1</LegacyItemID>
   <IsPickable>false</IsPickable>
   <IsUsable>false</IsUsable>
@@ -33,7 +33,7 @@
           <Delay>0</Delay>
           <SyncType>OwnerSync</SyncType>
           <OverrideCategory>None</OverrideCategory>
-          <StatusEffect>HumoursMaintenenceBleeding</StatusEffect>
+          <StatusEffect>HumoursMaintenanceBleeding</StatusEffect>
           <ChanceToContract>100</ChanceToContract>
           <AffectController>false</AffectController>
           <AdditionalLevel>0</AdditionalLevel>
@@ -61,7 +61,7 @@
           <Delay>0</Delay>
           <SyncType>OwnerSync</SyncType>
           <OverrideCategory>None</OverrideCategory>
-          <StatusEffect>HumoursMaintenenceBleeding+</StatusEffect>
+          <StatusEffect>HumoursMaintenanceBleeding+</StatusEffect>
           <ChanceToContract>100</ChanceToContract>
           <AffectController>false</AffectController>
           <AdditionalLevel>0</AdditionalLevel>
@@ -89,7 +89,7 @@
           <SyncType>OwnerSync</SyncType>
           <OverrideCategory>None</OverrideCategory>
           <CleanseType>StatusSpecific</CleanseType>
-          <SelectorValue>HumoursMaintenenceBleeding</SelectorValue>
+          <SelectorValue>HumoursMaintenanceBleeding</SelectorValue>
         </SL_Effect>
       </Effects>
       <EffectConditions>
@@ -113,7 +113,7 @@
           <SyncType>OwnerSync</SyncType>
           <OverrideCategory>None</OverrideCategory>
           <CleanseType>StatusSpecific</CleanseType>
-          <SelectorValue>HumoursMaintenenceBleeding+</SelectorValue>
+          <SelectorValue>HumoursMaintenanceBleeding+</SelectorValue>
         </SL_Effect>
       </Effects>
       <EffectConditions>

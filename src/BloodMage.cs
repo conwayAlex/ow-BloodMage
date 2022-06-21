@@ -15,7 +15,7 @@ namespace BloodMage
     public class BloodMage : BaseUnityPlugin
     {
         // Choose a GUID for your project. Change "myname" and "mymod".
-        public const string GUID = "BloodMage.mod";
+        public const string GUID = "com.LlamaMage.bloodmage";
         // Choose a NAME for your project, generally the same as your Assembly Name.
         public const string NAME = "Blood Mage";
         // Increment the VERSION when you release a new version of your mod.
@@ -38,6 +38,8 @@ namespace BloodMage
 
             // Harmony is for patching methods. If you're not patching anything, you can comment-out or delete this line.
             //new Harmony(GUID).PatchAll();
+            var harmony = new Harmony(GUID); // rename "author" and "project"
+            harmony.PatchAll();
         }
 
         // Update is called once per frame. Use this only if needed.

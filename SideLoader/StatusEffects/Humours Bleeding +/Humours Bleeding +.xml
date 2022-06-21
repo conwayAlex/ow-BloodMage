@@ -2,8 +2,8 @@
 <SL_StatusEffect xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TargetStatusIdentifier>Possessed</TargetStatusIdentifier>
   <NewStatusID>-28005</NewStatusID>
-  <StatusIdentifier>HumoursMaintenenceBleeding+</StatusIdentifier>
-  <Name>Humours Maintenence Bleeding +</Name>
+  <StatusIdentifier>HumoursMaintenanceBleeding+</StatusIdentifier>
+  <Name>Humours Maintenance Bleeding +</Name>
   <Description>Decay Damage and Resistance +[E1V1]%.</Description>
   <Lifespan>-1</Lifespan>
   <RefreshRate>0.1</RefreshRate>
