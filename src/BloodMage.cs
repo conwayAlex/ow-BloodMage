@@ -21,6 +21,8 @@ namespace BloodMage
         // Increment the VERSION when you release a new version of your mod.
         public const string VERSION = "0.1.1";
 
+        public static BloodMage Instance;
+
         // For accessing your BepInEx Logger from outside of this class (eg Plugin.Log.LogMessage("");)
         internal static ManualLogSource Log;
 
@@ -32,6 +34,11 @@ namespace BloodMage
         {
             Log = this.Logger;
             Log.LogMessage($"Hello world from {NAME} {VERSION}!");
+
+            BloodMage.Instance = this;
+            GameObject gameObject = base.gameObject;
+            gameObject.AddComponent<DamageManager>();
+            //gameObject.AddComponent<ExtrasManager>();
 
             // Any config settings you define should be set up like this:
             //ExampleConfig = Config.Bind("ExampleCategory", "ExampleSetting", false, "This is an example setting.");

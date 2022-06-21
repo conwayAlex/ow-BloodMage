@@ -10,12 +10,11 @@ namespace BloodMage
 {
     class DamageManager : MonoBehaviour
     {
+        public static DamageManager Instance;
         internal void Awake()
         {
             DamageManager.Instance = this;
         }
-
-        public static DamageManager Instance;
 
         public int HypovolemiaID = -28001;
 
@@ -26,7 +25,9 @@ namespace BloodMage
             {
                 if(__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(DamageManager.Instance.HypovolemiaID))
                 {
-                    _damage = .1f * _damage;
+                    BloodMage.Log.LogMessage($"Damage: {_damage}");
+                    _damage *= .1f;
+                    BloodMage.Log.LogMessage($"Damage: {_damage}");
                 }
             }
         }
