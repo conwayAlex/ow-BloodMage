@@ -21,57 +21,13 @@ namespace BloodMage
         [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.GetAmplifiedBleedingDamage))]
         public class GetAmplifiedBleedingDamagePatch
         {
-            static void Postfix(CharacterStats __instance, ref float _damage)
+            static void Postfix(CharacterStats __instance, ref float __result)
             {
                 if(__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(DamageManager.Instance.HypovolemiaID))
                 {
-                    BloodMage.Log.LogMessage($"Damage: {_damage}");
-                    _damage *= .1f;
-                    BloodMage.Log.LogMessage($"Damage: {_damage}");
+                    __result *= .4f;
                 }
             }
         }
-
-        //[HarmonyPatch(typeof(AffectHealth), nameof(AffectHealth.ActivateLocally))]
-        //public class AffectHealthPatch
-        //{
-        //    static void Prefix(AffectHealth __instance, Character _affectedCharacter, ref object[] _infos )
-        //    {
-        //        if(_affectedCharacter != null && _affectedCharacter.Alive)
-        //        {
-        //            float num = __instance.GetAffectQuantity(_affectedCharacter);
-        //            num *= (__instance.IsModifier ? (0.01f * _affectedCharacter.Stats.MaxHealth) : 1f);
-        //            if(num < 0f)
-
-        //            if (__instance.IsStatusEffect)
-        //            {
-        //                if (__instance.EffectType.Name == "Bleeding")
-        //                {
-
-
-        //                    if (_affectedCharacter.Inventory.SkillKnowledge.IsItemLearned(DamageManager.Instance.HypovolemiaID))
-        //                    {
-        //                        //damage * x
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    static void Postfix(AffectHealth __instance, Character _affectedCharacter, ref object[] _infos)
-        //    {
-        //        if (__instance.IsStatusEffect)
-        //        {
-        //            if (__instance.EffectType.Name == "Bleeding")
-        //            {
-        //                if (_affectedCharacter.Inventory.SkillKnowledge.IsItemLearned(DamageManager.Instance.HypovolemiaID))
-        //                {
-        //                    //damage / x
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
     }
 }

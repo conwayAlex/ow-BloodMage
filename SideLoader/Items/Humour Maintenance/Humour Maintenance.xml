@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <SL_Skill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Target_ItemID>8205070</Target_ItemID>
-  <New_ItemID>-28003</New_ItemID>
+  <New_ItemID>-28002</New_ItemID>
   <Name>Humour Maintenance</Name>
   <Description>While bleeding, decay damage and resistance is increased. Extreme Bleeding amplifies this effect.</Description>
   <LegacyItemID>-1</LegacyItemID>
@@ -29,102 +29,17 @@
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
       <Effects>
-        <SL_Effect xsi:type="SL_AddStatusEffect">
+        <SL_Effect xsi:type="SL_AffectStat">
           <Delay>0</Delay>
           <SyncType>OwnerSync</SyncType>
           <OverrideCategory>None</OverrideCategory>
-          <StatusEffect>HumoursMaintenanceBleeding</StatusEffect>
-          <ChanceToContract>100</ChanceToContract>
-          <AffectController>false</AffectController>
-          <AdditionalLevel>0</AdditionalLevel>
-          <NoDealer>false</NoDealer>
+          <Stat_Tag>DrinkDepleteRate</Stat_Tag>
+          <AffectQuantity>10.554</AffectQuantity>
+          <IsModifier>false</IsModifier>
+          <Duration>-1</Duration>
         </SL_Effect>
       </Effects>
-      <EffectConditions>
-        <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
-          <Invert>false</Invert>
-          <DiseaseAge>0</DiseaseAge>
-          <CheckOwner>false</CheckOwner>
-          <StatusSelectorType>StatusSpecific</StatusSelectorType>
-          <SelectorValue>Bleeding</SelectorValue>
-        </SL_EffectCondition>
-      </EffectConditions>
       <ChildEffects />
-    </SL_EffectTransform>
-    <SL_EffectTransform>
-      <TransformName>Passive</TransformName>
-      <Position xsi:nil="true" />
-      <Rotation xsi:nil="true" />
-      <Scale xsi:nil="true" />
-      <Effects>
-        <SL_Effect xsi:type="SL_AddStatusEffect">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <StatusEffect>HumoursMaintenanceBleeding+</StatusEffect>
-          <ChanceToContract>100</ChanceToContract>
-          <AffectController>false</AffectController>
-          <AdditionalLevel>0</AdditionalLevel>
-          <NoDealer>false</NoDealer>
-        </SL_Effect>
-      </Effects>
-      <EffectConditions>
-        <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
-          <Invert>false</Invert>
-          <DiseaseAge>0</DiseaseAge>
-          <CheckOwner>false</CheckOwner>
-          <StatusSelectorType>StatusSpecific</StatusSelectorType>
-          <SelectorValue>Bleeding +</SelectorValue>
-        </SL_EffectCondition>
-      </EffectConditions>
-    </SL_EffectTransform>
-    <SL_EffectTransform>
-      <TransformName>Passive</TransformName>
-      <Position xsi:nil="true" />
-      <Rotation xsi:nil="true" />
-      <Scale xsi:nil="true" />
-      <Effects>
-        <SL_Effect xsi:type="SL_RemoveStatusEffect">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <CleanseType>StatusSpecific</CleanseType>
-          <SelectorValue>HumoursMaintenanceBleeding</SelectorValue>
-        </SL_Effect>
-      </Effects>
-      <EffectConditions>
-        <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
-          <Invert>true</Invert>
-          <DiseaseAge>0</DiseaseAge>
-          <CheckOwner>false</CheckOwner>
-          <StatusSelectorType>StatusSpecific</StatusSelectorType>
-          <SelectorValue>Bleeding</SelectorValue>
-        </SL_EffectCondition>
-      </EffectConditions>
-    </SL_EffectTransform>
-    <SL_EffectTransform>
-      <TransformName>Passive</TransformName>
-      <Position xsi:nil="true" />
-      <Rotation xsi:nil="true" />
-      <Scale xsi:nil="true" />
-      <Effects>
-        <SL_Effect xsi:type="SL_RemoveStatusEffect">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <CleanseType>StatusSpecific</CleanseType>
-          <SelectorValue>HumoursMaintenanceBleeding+</SelectorValue>
-        </SL_Effect>
-      </Effects>
-      <EffectConditions>
-        <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
-          <Invert>true</Invert>
-          <DiseaseAge>0</DiseaseAge>
-          <CheckOwner>false</CheckOwner>
-          <StatusSelectorType>StatusSpecific</StatusSelectorType>
-          <SelectorValue>Bleeding +</SelectorValue>
-        </SL_EffectCondition>
-      </EffectConditions>
     </SL_EffectTransform>
   </EffectTransforms>
   <Cooldown>0</Cooldown>

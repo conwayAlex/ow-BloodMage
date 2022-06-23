@@ -10,6 +10,16 @@ namespace BloodMage
 {
     class ExtrasManager : MonoBehaviour
     {
+        public static ExtrasManager Instance;
+
+        internal void Awake()
+        {
+            ExtrasManager.Instance = this;
+        }
+
+        public int HumoursMaintenance = -28002;
+
+
 
     }
 }

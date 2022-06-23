@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-// RENAME 'OutwardModTemplate' TO SOMETHING ELSE
 namespace BloodMage
 {
     [BepInPlugin(GUID, NAME, VERSION)]

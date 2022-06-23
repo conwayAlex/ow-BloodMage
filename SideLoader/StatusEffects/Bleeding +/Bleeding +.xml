@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<SL_StatusEffect xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TargetStatusIdentifier>Bleeding +</TargetStatusIdentifier>
+  <NewStatusID>35</NewStatusID>
+  <StatusIdentifier>Bleeding +</StatusIdentifier>
+  <Name>Extreme Bleeding</Name>
+  <Description>Lose [E1V1]% of your health per second.</Description>
+  <Lifespan>120</Lifespan>
+  <RefreshRate>1</RefreshRate>
+  <Purgeable>true</Purgeable>
+  <Priority>2</Priority>
+  <IgnoreBarrier>false</IgnoreBarrier>
+  <BuildupRecoverySpeed>3</BuildupRecoverySpeed>
+  <IgnoreBuildupIfApplied>false</IgnoreBuildupIfApplied>
+  <AmplifiedStatusIdentifier />
+  <RemoveRequiredStatus>false</RemoveRequiredStatus>
+  <NormalizeDamageDisplay>false</NormalizeDamageDisplay>
+  <DisplayedInHUD>true</DisplayedInHUD>
+  <IsHidden>false</IsHidden>
+  <IsMalusEffect>true</IsMalusEffect>
+  <DelayedDestroyTime>0</DelayedDestroyTime>
+  <ActionOnHit>None</ActionOnHit>
+  <FamilyMode>Reference</FamilyMode>
+  <ReferenceFamilyUID>fKo9pwhyQUyLb3gnwc6h5g</ReferenceFamilyUID>
+  <PlayFXOnActivation>true</PlayFXOnActivation>
+  <FXOffset>
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </FXOffset>
+  <VFXInstantiationType>VFX</VFXInstantiationType>
+  <VFXPrefab>HexBleedingVFX</VFXPrefab>
+  <SpecialSFX>NONE</SpecialSFX>
+  <PlaySpecialFXOnStop>false</PlaySpecialFXOnStop>
+  <EffectBehaviour>OverrideEffects</EffectBehaviour>
+  <Effects>
+    <SL_EffectTransform>
+      <TransformName />
+      <Position xsi:nil="true" />
+      <Rotation xsi:nil="true" />
+      <Scale xsi:nil="true" />
+      <Effects>
+        <SL_Effect xsi:type="SL_AddStatusEffect">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <StatusEffect>HumoursMaintenanceAmplified</StatusEffect>
+          <ChanceToContract>100</ChanceToContract>
+          <AffectController>false</AffectController>
+          <AdditionalLevel>0</AdditionalLevel>
+          <NoDealer>false</NoDealer>
+        </SL_Effect>
+      </Effects>
+      <EffectConditions>
+        <SL_EffectCondition xsi:type="SL_PassiveSkillCondition">
+          <Invert>false</Invert>
+          <ReqSkillID>-28002</ReqSkillID>
+        </SL_EffectCondition>
+      </EffectConditions>
+    </SL_EffectTransform>
+  </Effects>
+</SL_StatusEffect>

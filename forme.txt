@@ -1,0 +1,18 @@
+
+
+*Skills*
+Open Vein -28000 - done
+Hypovolemia -28001 - done, needs balanced
+Humours Maintenance -28002 - in progress
+Dedication of Blood -28003 - done, needs feedback
+Leyline Abandonment -28004 - not started
+Leyline Entanglement -28005
+Exsanguinate -28006
+Phlebotomist -28007
+Blood Boil -28008
+Blood Shard -28009
+
+
+*Status Effects*
+Humours Maintenance 1
+Humours Maintenance 2

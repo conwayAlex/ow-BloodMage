@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <SL_Skill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Target_ItemID>8205090</Target_ItemID>
-  <New_ItemID>-28002</New_ItemID>
+  <New_ItemID>-28003</New_ItemID>
   <Name>Dedication of Blood</Name>
   <Description>You regain 0.2 health per second.
 

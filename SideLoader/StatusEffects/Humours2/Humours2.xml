@@ -1,17 +1,18 @@
 <?xml version="1.0"?>
 <SL_StatusEffect xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <TargetStatusIdentifier>Possessed</TargetStatusIdentifier>
-  <NewStatusID>-28004</NewStatusID>
-  <StatusIdentifier>HumoursMaintenanceBleeding</StatusIdentifier>
-  <Name>Humours Maintenance Bleeding</Name>
+  <TargetStatusIdentifier>Possessed Amplified</TargetStatusIdentifier>
+  <NewStatusID>28998</NewStatusID>
+  <StatusIdentifier>HumoursMaintenanceAmplified</StatusIdentifier>
+  <Name>Humours Maintenance Amplified</Name>
   <Description>Decay Damage and Resistance +[E1V1]%.</Description>
   <Lifespan>-1</Lifespan>
   <RefreshRate>0.1</RefreshRate>
-  <Purgeable>false</Purgeable>
+  <Purgeable>true</Purgeable>
   <Priority>1</Priority>
   <IgnoreBarrier>false</IgnoreBarrier>
   <BuildupRecoverySpeed>3</BuildupRecoverySpeed>
   <IgnoreBuildupIfApplied>false</IgnoreBuildupIfApplied>
+  <AmplifiedStatusIdentifier />
   <RemoveRequiredStatus>false</RemoveRequiredStatus>
   <NormalizeDamageDisplay>false</NormalizeDamageDisplay>
   <DisplayedInHUD>true</DisplayedInHUD>
@@ -22,7 +23,7 @@
   <FamilyMode>Bind</FamilyMode>
   <BindFamily>
     <UID>qjgoTqwifUOaYF9NlAkJOw</UID>
-    <Name>Possessed</Name>
+    <Name>Possessed Amplified</Name>
     <StackBehaviour>IndependantUnique</StackBehaviour>
     <MaxStackCount>-1</MaxStackCount>
     <LengthType>Short</LengthType>
@@ -50,7 +51,7 @@
           <SyncType>OwnerSync</SyncType>
           <OverrideCategory>None</OverrideCategory>
           <Stat_Tag>DecayDamage</Stat_Tag>
-          <AffectQuantity>10</AffectQuantity>
+          <AffectQuantity>30</AffectQuantity>
           <IsModifier>true</IsModifier>
           <Tags />
           <Duration>-1</Duration>
@@ -60,7 +61,7 @@
           <SyncType>OwnerSync</SyncType>
           <OverrideCategory>None</OverrideCategory>
           <Stat_Tag>DecayResistance</Stat_Tag>
-          <AffectQuantity>10</AffectQuantity>
+          <AffectQuantity>30</AffectQuantity>
           <IsModifier>false</IsModifier>
           <Tags />
           <Duration>-1</Duration>
@@ -68,6 +69,30 @@
       </Effects>
       <EffectConditions />
       <ChildEffects />
+    </SL_EffectTransform>
+    <SL_EffectTransform>
+      <TransformName>Normal</TransformName>
+      <Position xsi:nil="true" />
+      <Rotation xsi:nil="true" />
+      <Scale xsi:nil="true" />
+      <Effects>
+        <SL_Effect xsi:type="SL_RemoveStatusEffect">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <CleanseType>StatusSpecific</CleanseType>
+          <SelectorValue>HumoursMaintenanceAmplified</SelectorValue>
+        </SL_Effect>
+      </Effects>
+      <EffectConditions>
+        <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+          <Invert>true</Invert>
+          <DiseaseAge>0</DiseaseAge>
+          <CheckOwner>false</CheckOwner>
+          <StatusSelectorType>StatusSpecific</StatusSelectorType>
+          <SelectorValue>Bleeding +</SelectorValue>
+        </SL_EffectCondition>
+      </EffectConditions>
     </SL_EffectTransform>
   </Effects>
 </SL_StatusEffect>
