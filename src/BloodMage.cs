@@ -37,7 +37,7 @@ namespace BloodMage
             BloodMage.Instance = this;
             GameObject gameObject = base.gameObject;
             gameObject.AddComponent<DamageManager>();
-            //gameObject.AddComponent<ExtrasManager>();
+            gameObject.AddComponent<ExtrasManager>();
 
             // Any config settings you define should be set up like this:
             //ExampleConfig = Config.Bind("ExampleCategory", "ExampleSetting", false, "This is an example setting.");
@@ -55,17 +55,32 @@ namespace BloodMage
 
         }
 
+        //The below code does not belong to me, taken from Emo on the OW modding discord
+        public static Tag GetTagDefinition(string TagName)
+        {
+            foreach (var item in TagSourceManager.Instance.m_tags)
+            {
+
+                if (item.TagName == TagName)
+                {
+                    return item;
+                }
+            }
+
+            return default(Tag);
+        }
+
         // This is an example of a Harmony patch.
         // If you're not using this, you should delete it.
         //[HarmonyPatch(typeof(ResourcesPrefabManager), nameof(ResourcesPrefabManager.Load))]
         //public class ResourcesPrefabManager_Load
         //{
-            //static void Postfix()
-            //{
-                // This is a "Postfix" (runs after original) on ResourcesPrefabManager.Load
-                // For more documentation on Harmony, see the Harmony Wiki.
-                // https://harmony.pardeike.net/
-            //}
+        //static void Postfix()
+        //{
+        // This is a "Postfix" (runs after original) on ResourcesPrefabManager.Load
+        // For more documentation on Harmony, see the Harmony Wiki.
+        // https://harmony.pardeike.net/
+        //}
         //}
     }
 }
