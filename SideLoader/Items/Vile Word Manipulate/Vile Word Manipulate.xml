@@ -1,11 +1,9 @@
 <?xml version="1.0"?>
-<SL_Skill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Target_ItemID>8205090</Target_ItemID>
-  <New_ItemID>-28003</New_ItemID>
-  <Name>Dedication of Blood</Name>
-  <Description>You regain 0.2 health per second.
-
-This is a constant effect.</Description>
+<SL_AttackSkill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Target_ItemID>8100220</Target_ItemID>
+  <New_ItemID>-28002</New_ItemID>
+  <Name>Vile Word: Manipulate</Name>
+  <Description>Does nothing unless bleeding.</Description>
   <LegacyItemID>-1</LegacyItemID>
   <IsPickable>false</IsPickable>
   <IsUsable>false</IsUsable>
@@ -14,7 +12,7 @@ This is a constant effect.</Description>
   <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
   <RepairedInRest>true</RepairedInRest>
   <BehaviorOnNoDurability>NotSet</BehaviorOnNoDurability>
-  <CastType>NONE</CastType>
+  <CastType>WriteRune</CastType>
   <CastModifier>Immobilized</CastModifier>
   <CastLocomotionEnabled>false</CastLocomotionEnabled>
   <MobileCastMovementMult>-1</MobileCastMovementMult>
@@ -26,35 +24,37 @@ This is a constant effect.</Description>
   <EffectBehaviour>Destroy</EffectBehaviour>
   <EffectTransforms>
     <SL_EffectTransform>
-      <TransformName>Passive</TransformName>
+      <TransformName />
       <Position xsi:nil="true" />
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
-      <Effects>
-        <SL_Effect xsi:type="SL_AffectStat">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <Stat_Tag>HealthRegen</Stat_Tag>
-          <AffectQuantity>0.2</AffectQuantity>
-          <IsModifier>false</IsModifier>
-          <Tags />
-          <Duration>-1</Duration>
-        </SL_Effect>
-      </Effects>
-      <EffectConditions />
-      <ChildEffects />
+      <Effects />
+      <EffectConditions>
+        <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+          <Invert>false</Invert>
+          <DiseaseAge>0</DiseaseAge>
+          <CheckOwner>false</CheckOwner>
+          <StatusSelectorType>StatusSpecific</StatusSelectorType>
+          <SelectorValue>Bleeding</SelectorValue>
+        </SL_EffectCondition>
+      </EffectConditions>
     </SL_EffectTransform>
   </EffectTransforms>
-  <Cooldown>0</Cooldown>
+  <Cooldown>10</Cooldown>
   <StaminaCost>0</StaminaCost>
   <ManaCost>0</ManaCost>
   <DurabilityCost>0</DurabilityCost>
   <DurabilityCostPercent>0</DurabilityCostPercent>
-  <VFXOnStart>false</VFXOnStart>
+  <VFXOnStart>true</VFXOnStart>
   <StopStartVFXOnEnd>false</StopStartVFXOnEnd>
-  <StartVFX xsi:nil="true" />
+  <StartVFX>VFXRuneShim</StartVFX>
   <RequiredItems />
-  <HealthCost>0</HealthCost>
+  <HealthCost>5</HealthCost>
   <RequiredPlayerType>Normal</RequiredPlayerType>
-</SL_Skill>
+  <AmmunitionTypes />
+  <RequiredOffHandTypes />
+  <RequiredWeaponTypes />
+  <RequiredWeaponTags />
+  <RequireImbue>false</RequireImbue>
+  <AmmunitionAmount xsi:nil="true" />
+</SL_AttackSkill>

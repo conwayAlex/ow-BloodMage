@@ -26,7 +26,7 @@ Unsure for the third one.
 
 #### Vile Pact
 Passive
-You regenerate x% of your maxmimum health back per second. 
+You regenerate 0.2 health per second. 
 
 ### Specialization Skills
 

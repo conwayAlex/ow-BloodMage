@@ -2,8 +2,8 @@
 <SL_AttackSkill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Target_ItemID>8200105</Target_ItemID>
   <New_ItemID>-28000</New_ItemID>
-  <Name>Open Vein</Name>
-  <Description>Inflict a bleed upon yourself. </Description>
+  <Name>Harness Blood</Name>
+  <Description>Inflict a bleed upon yourself. Bleeding allows the use of blood magic.</Description>
   <LegacyItemID>-1</LegacyItemID>
   <IsPickable>false</IsPickable>
   <IsUsable>false</IsUsable>
