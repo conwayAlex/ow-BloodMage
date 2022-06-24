@@ -25,7 +25,7 @@ namespace BloodMage
             {
                 if(__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(DamageManager.Instance.HypovolemiaID))
                 {
-                    __result *= .4f;
+                    __result *= .5f;
                 }
             }
         }
