@@ -13,14 +13,18 @@ namespace BloodMage
     [BepInPlugin(GUID, NAME, VERSION)]
     public class BloodMage : BaseUnityPlugin
     {
-        // Choose a GUID for your project. Change "myname" and "mymod".
+        //Metadata
         public const string GUID = "com.LlamaMage.bloodmage";
-        // Choose a NAME for your project, generally the same as your Assembly Name.
         public const string NAME = "Blood Mage";
-        // Increment the VERSION when you release a new version of your mod.
         public const string VERSION = "0.1.1";
 
         public static BloodMage Instance;
+
+        public static int HypovolemiaID = -28001;
+
+        public static int VilePact = -28006;
+        public static int LeylineAbandonment = -28007;
+        public static int LeylineEntanglement = -28008;
 
         // For accessing your BepInEx Logger from outside of this class (eg Plugin.Log.LogMessage("");)
         internal static ManualLogSource Log;
@@ -32,20 +36,17 @@ namespace BloodMage
         internal void Awake()
         {
             Log = this.Logger;
-            Log.LogMessage($"Hello world from {NAME} {VERSION}!");
+            Log.LogMessage($"{NAME} {VERSION} loading...");
 
             BloodMage.Instance = this;
-            GameObject gameObject = base.gameObject;
-            gameObject.AddComponent<DamageManager>();
-            gameObject.AddComponent<ExtrasManager>();
-
+            
             // Any config settings you define should be set up like this:
             //ExampleConfig = Config.Bind("ExampleCategory", "ExampleSetting", false, "This is an example setting.");
 
-            // Harmony is for patching methods. If you're not patching anything, you can comment-out or delete this line.
-            //new Harmony(GUID).PatchAll();
-            var harmony = new Harmony(GUID); // rename "author" and "project"
+            var harmony = new Harmony(GUID);
             harmony.PatchAll();
+
+            Log.LogMessage($"{NAME} {VERSION} load complete.");
         }
 
         // Update is called once per frame. Use this only if needed.
@@ -70,17 +71,98 @@ namespace BloodMage
             return default(Tag);
         }
 
-        // This is an example of a Harmony patch.
-        // If you're not using this, you should delete it.
-        //[HarmonyPatch(typeof(ResourcesPrefabManager), nameof(ResourcesPrefabManager.Load))]
-        //public class ResourcesPrefabManager_Load
-        //{
-        //static void Postfix()
-        //{
-        // This is a "Postfix" (runs after original) on ResourcesPrefabManager.Load
-        // For more documentation on Harmony, see the Harmony Wiki.
-        // https://harmony.pardeike.net/
-        //}
-        //}
+        //Hypovolemia Patch
+        //Applies a % reduction after the original method determines the output damage
+        //based on whichever bleed the player has currently.
+        [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.GetAmplifiedBleedingDamage))]
+        public class GetAmplifiedBleedingDamagePatch
+        {
+            static void Postfix(CharacterStats __instance, ref float __result)
+            {
+                if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.HypovolemiaID))
+                {
+                    __result *= .5f;
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(CharacterSkillKnowledge), nameof(CharacterSkillKnowledge.AddItem))]
+        public class LeylineAbandonmentLearnedPatch
+        {
+            static bool Prefix(CharacterSkillKnowledge __instance, Item _item)
+            {
+                //If player is learning skill, remove all mana points
+                //and refund health and stamina. 
+                if (_item.ItemID == BloodMage.LeylineAbandonment)
+                {
+                    BloodMage.Log.LogMessage("Learning Leyline Abandonment, resetting investment.");
+
+
+                    //player has this much mana when learning your skill
+                    float CurrentMana = __instance.m_character.Stats.MaxMana;
+                    __instance.m_character.Stats.SetManaPoint(0);
+
+
+                    float PercentHp = CurrentMana * 0.25f;
+                    float PercentStamina = CurrentMana * 0.25f;
+
+                    __instance.m_character.Stats.m_maxHealthStat.BaseValue = __instance.m_character.Stats.m_maxHealthStat.BaseValue + PercentHp;
+                    __instance.m_character.Stats.m_maxStamina.BaseValue = __instance.m_character.Stats.m_maxStamina.BaseValue + PercentStamina;
+                }
+                return true;
+            }
+        }
+        
+        //The purpose behind this patch is to prevent players from investing further in the Leyline
+        [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.SetManaPoint))]
+        public class LeylineAbandonmentManaPointPatch
+        {
+            static void Postfix(CharacterStats __instance)
+            {
+                if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
+                {
+                    BloodMage.Log.LogMessage("Mana points suppressed.");
+                    __instance.m_manaPoint = 0;
+                }
+            }
+        }
+
+        //Leyline Abandonment will also cause any mana gained to instead be
+        //gained as its counterpart health and stamina
+        [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.AddStatStack))]
+        public class AddStatStackPatch
+        {
+            static bool Prefix(CharacterStats __instance, Tag _stat, StatStack _stack, bool _multiplier)
+            {
+                if (_stat.TagName == "MaxMana")
+                {
+                    if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
+                    {
+                        _multiplier = false; //Make sure this is false
+                        float derived = _stack.RawValue * .25f; //20 mana -> 5 hp and 5 stamina, which is 1/4 of 20
+
+                        BloodMage.Log.LogMessage($"Health/stamina derived {derived}");
+
+                        //Create new statstack to add health
+                        Tag newTag = BloodMage.GetTagDefinition("MaxHealth");
+                        Tag[] healthTag = { newTag };
+                        Stat stat = __instance.GetStat(newTag);
+
+                        //Mirror what the original method would do
+                        if (stat != null)
+                        {
+                            stat.AddStack(new StatStack("-28007:2:0", derived, healthTag), _multiplier);
+                        }
+
+                        //Set the variables for stamina and let the normal method run with manipulated values
+                        _stat = BloodMage.GetTagDefinition("MaxStamina");
+                        Tag[] staminaTag = { _stat };
+                        _stack = new StatStack("-28007:2:1", derived, staminaTag);
+                    }
+                }
+                return true;
+            }
+        }
+
     }
 }
