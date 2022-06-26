@@ -131,7 +131,9 @@ namespace BloodMage
             }
         }
 
-
+        
+        //Leyline Abandonment and Entanglement Patch
+        //Redirect consumption of skills to appropriate channels
         [HarmonyPatch(typeof(Skill), nameof(Skill.ConsumeResources))]
         public class LeylinePassivesAffectManaPatch
         {
@@ -147,7 +149,7 @@ namespace BloodMage
                     else if (__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineEntanglement))
                     {
                         float derived = __instance.ManaCost / 2f;
-                        __instance.m_ownerCharacter.Stats.UseMana(null, derived);
+                        __instance.m_ownerCharacter.Stats.UseMana(null, __instance.m_ownerCharacter.Stats.GetFinalManaConsumption(null, derived));
                         __instance.m_ownerCharacter.Stats.ReceiveDamage(derived);
                         __instance.ManaCost = 0f;
                     }
