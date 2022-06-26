@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<SL_StatusEffect xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TargetStatusIdentifier>Bleeding</TargetStatusIdentifier>
+  <NewStatusID>34</NewStatusID>
+  <StatusIdentifier>VilePactRegen</StatusIdentifier>
+  <Name>Vile Pact Regeneration</Name>
+  <Description>Regenerate a % of your max health per second.</Description>
+  <Lifespan>-1</Lifespan>
+  <RefreshRate>1</RefreshRate>
+  <Purgeable>false</Purgeable>
+  <Priority>1</Priority>
+  <IgnoreBarrier>false</IgnoreBarrier>
+  <BuildupRecoverySpeed>3</BuildupRecoverySpeed>
+  <IgnoreBuildupIfApplied>false</IgnoreBuildupIfApplied>
+  <AmplifiedStatusIdentifier />
+  <RemoveRequiredStatus>false</RemoveRequiredStatus>
+  <NormalizeDamageDisplay>false</NormalizeDamageDisplay>
+  <DisplayedInHUD>false</DisplayedInHUD>
+  <IsHidden>true</IsHidden>
+  <IsMalusEffect>false</IsMalusEffect>
+  <DelayedDestroyTime>0</DelayedDestroyTime>
+  <ActionOnHit>None</ActionOnHit>
+  <FamilyMode>Reference</FamilyMode>
+  <ReferenceFamilyUID>fKo9pwhyQUyLb3gnwc6h5g</ReferenceFamilyUID>
+  <PlayFXOnActivation>true</PlayFXOnActivation>
+  <FXOffset>
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </FXOffset>
+  <VFXInstantiationType>VFX</VFXInstantiationType>
+  <VFXPrefab>HexBleedingVFX</VFXPrefab>
+  <SpecialSFX>NONE</SpecialSFX>
+  <PlaySpecialFXOnStop>false</PlaySpecialFXOnStop>
+  <EffectBehaviour>Destroy</EffectBehaviour>
+  <Effects>
+    <SL_EffectTransform>
+      <TransformName />
+      <Position xsi:nil="true" />
+      <Rotation xsi:nil="true" />
+      <Scale xsi:nil="true" />
+      <Effects>
+        <SL_Effect xsi:type="SL_AffectHealth">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>0.1</AffectQuantity>
+          <IsModifier>true</IsModifier>
+          <AffectQuantityAI>0</AffectQuantityAI>
+          <InformSourceCharacter>false</InformSourceCharacter>
+        </SL_Effect>
+      </Effects>
+    </SL_EffectTransform>
+  </Effects>
+</SL_StatusEffect>
