@@ -89,7 +89,7 @@ namespace BloodMage
                     character.Stats.GiveManaPoint(1);
                     yield return new WaitForSeconds(0.5f);
                     float hpstam = 5f;
-                    derived = character.Stats.MaxMana * .25f + hpstam;
+                    derived = (character.Stats.MaxMana * .25f) + hpstam;
                 }
                 else
                 {
@@ -159,120 +159,46 @@ namespace BloodMage
             }
         }
 
-
-        //[HarmonyPatch(typeof(PassiveSkill), nameof(PassiveSkill.RegisterKnowledge))]
-        //public class LeylineAbandonmentRegisteredPatch
-        //{
-        //    static bool Prefix(Item __instance)
-        //    {
-        //        if (__instance.ItemID == BloodMage.LeylineAbandonment)
-        //        {
-        //            if (!__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
-        //            {
-        //                BloodMage.Log.LogMessage("Learning Leyline Abandonment test");
-        //                if (__instance.m_ownerCharacter.Stats.m_manaPoint == 0)
-        //                {
-        //                    BloodMage.Log.LogMessage("Mana not obtained.");
-        //                    __instance.m_ownerCharacter.Stats.SetManaPoint(1);
-
-        //                    float hpstam = 5f;
-        //                    float derived = __instance.m_ownerCharacter.Stats.MaxMana * .25f;
-
-        //                    foreach (var stack in __instance.m_ownerCharacter.Stats.m_maxManaStat.RawStack)
-        //                    {
-        //                        __instance.m_ownerCharacter.Stats.m_maxManaStat.RemoveRawStack(stack.SourceID);
-        //                    }
-        //                    __instance.m_ownerCharacter.Stats.m_maxManaStat.BaseValue = 0;
-
-        //                    __instance.m_ownerCharacter.Stats.m_maxHealthStat.BaseValue += derived + hpstam;
-        //                    __instance.m_ownerCharacter.Stats.m_maxStamina.BaseValue += derived += hpstam;
-
-        //                }
-        //                else
-        //                {
-        //                    BloodMage.Log.LogMessage("Mana obtained already.");
-        //                    BloodMage.Log.LogMessage($"Mana current {__instance.m_ownerCharacter.Stats.MaxMana}");
-
-        //                    float derived = __instance.m_ownerCharacter.Stats.MaxMana * .25f;
-        //                    __instance.m_ownerCharacter.Stats.m_maxManaStat.BaseValue = 0;
-
-        //                    BloodMage.Log.LogMessage($"Mana to hp/stam {derived}");
-
-        //                    foreach (var stack in __instance.m_ownerCharacter.Stats.m_maxManaStat.RawStack)
-        //                    {
-        //                        __instance.m_ownerCharacter.Stats.m_maxManaStat.RemoveRawStack(stack.SourceID);
-        //                    }
-
-        //                    __instance.m_ownerCharacter.Stats.m_maxHealthStat.BaseValue += derived;
-        //                    __instance.m_ownerCharacter.Stats.m_maxStamina.BaseValue += derived;
-        //                }
-        //                return true;
-        //            }
-        //            return false;
-        //        }
-        //        return true;
-        //    }
-        //}
-
-
         [HarmonyPatch(typeof(CharacterKnowledge), nameof(CharacterKnowledge.AddItem))]
-        public class LeylineAbandonmentLearnedPatch
+        public class LeylinePassivesLearnedPatch
         {
-            public static void Prefix(CharacterKnowledge __instance, Item _item)
+            static bool Prefix(CharacterKnowledge __instance, Item _item)
             {
-                //If player is learning skill, remove all mana points
-                //and refund health and stamina. 
-
-                //if(__instance.m_character)
-                //{
-                //    if(_item.ItemID == BloodMage.LeylineAbandonment)
-                //    {
-                //        //Idea stolen from IggyTheMad, adapted for my needs
-                //        Manager.Instance.StartCoroutine(Manager.Instance.RevertLeyline(__instance.m_character, 2f));
-                //    }
-                //}
-
-                if (_item != null)
+                if(_item != null)
                 {
-                    if (_item.ItemID == BloodMage.LeylineAbandonment)
+                    if(_item.ItemID == BloodMage.LeylineAbandonment)
                     {
                         BloodMage.Log.LogMessage("Learning Leyline Abandonment");
 
-                        if (__instance.m_character.Stats.m_manaPoint == 0)
+                        float derived;
+
+                        if(__instance.m_character.Stats.m_manaPoint == 0)
                         {
                             BloodMage.Log.LogMessage("Mana not obtained.");
-                            __instance.m_character.Stats.SetManaPoint(1);
+                            __instance.m_character.Stats.GiveManaPoint(1);
                             float hpstam = 5f;
-                            float derived = __instance.m_character.Stats.MaxMana * .25f;
-
-                            foreach (var stack in __instance.m_character.Stats.m_maxManaStat.RawStack)
-                            {
-                                __instance.m_character.Stats.m_maxManaStat.RemoveRawStack(stack.SourceID);
-                            }
-
-                            __instance.m_character.Stats.m_maxHealthStat.BaseValue = __instance.m_character.Stats.m_maxHealthStat.BaseValue + derived + hpstam;
-                            __instance.m_character.Stats.m_maxStamina.BaseValue = __instance.m_character.Stats.m_maxStamina.BaseValue + derived + hpstam;
+                            derived = (__instance.m_character.Stats.MaxMana * .25f) + hpstam;
                         }
                         else
                         {
                             BloodMage.Log.LogMessage("Mana obtained already.");
                             BloodMage.Log.LogMessage($"Mana current {__instance.m_character.Stats.MaxMana}");
-                            float derived = __instance.m_character.Stats.MaxMana * .25f;
-
-                            BloodMage.Log.LogMessage($"Mana to hp/stam {derived}");
-
-                            foreach (var stack in __instance.m_character.Stats.m_maxManaStat.RawStack)
-                            {
-                                __instance.m_character.Stats.m_maxManaStat.RemoveRawStack(stack.SourceID);
-                            }
-
-                            __instance.m_character.Stats.m_maxHealthStat.BaseValue = __instance.m_character.Stats.m_maxHealthStat.BaseValue + derived;
-                            __instance.m_character.Stats.m_maxStamina.BaseValue = __instance.m_character.Stats.m_maxStamina.BaseValue + derived;
+                            derived = __instance.m_character.Stats.MaxMana * .25f;
                         }
 
+                        BloodMage.Log.LogMessage($"Mana to hp/stam {derived}");
+
+                        foreach (var stack in __instance.m_character.Stats.m_maxManaStat.RawStack)
+                        {
+                            __instance.m_character.Stats.m_maxManaStat.RemoveRawStack(stack.SourceID);
+                        }
+
+                        __instance.m_character.Stats.m_maxHealthStat.BaseValue += derived;
+                        __instance.m_character.Stats.m_maxStamina.BaseValue += derived;
                     }
                 }
 
+                return true;
             }
         }
 
@@ -311,7 +237,7 @@ namespace BloodMage
 
 
                         //_multiplier = false; //make sure this is false
-                        
+
                         ////create new statstack to add health
                         //Tag newtag = BloodMage.GetTagDefinition("MaxHealth");
                         //Tag[] healthtag = { newtag };
