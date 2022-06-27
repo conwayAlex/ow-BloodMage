@@ -37,8 +37,6 @@ namespace BloodMage
             Log.LogMessage($"{NAME} {VERSION} loading...");
 
             BloodMage.Instance = this;
-            GameObject gameObject = base.gameObject;
-            gameObject.AddComponent<Manager>();
 
             // Any config settings you define should be set up like this:
             //ExampleConfig = Config.Bind("ExampleCategory", "ExampleSetting", false, "This is an example setting.");
@@ -71,49 +69,6 @@ namespace BloodMage
             return default(Tag);
         }
 
-        public class Manager : MonoBehaviour
-        {
-            public static Manager Instance;
-            internal void Awake()
-            {
-                Manager.Instance = this;
-            }
-
-            //Idea stolen from IggyTheMad, adapted for my needs
-            public IEnumerator RevertLeyline(Character character, float timer)
-            {
-                float derived = 0;
-                if (character.Stats.m_manaPoint == 0)
-                {
-                    BloodMage.Log.LogMessage("Mana not obtained.");
-                    character.Stats.GiveManaPoint(1);
-                    yield return new WaitForSeconds(0.5f);
-                    float hpstam = 5f;
-                    derived = (character.Stats.MaxMana * .25f) + hpstam;
-                }
-                else
-                {
-                    BloodMage.Log.LogMessage("Mana obtained already.");
-                    BloodMage.Log.LogMessage($"Mana current {character.Stats.MaxMana}");
-                    derived = character.Stats.MaxMana * .25f;
-                    
-                }
-
-                BloodMage.Log.LogMessage($"Mana to hp/stam {derived}");
-
-                foreach (var stack in character.Stats.m_maxManaStat.RawStack)
-                {
-                    character.Stats.m_maxManaStat.RemoveRawStack(stack.SourceID);
-                }
-
-                character.Stats.m_maxHealthStat.BaseValue += derived;
-                character.Stats.m_maxStamina.BaseValue += derived;
-
-
-                yield break;
-            }
-        }
-
         
 
         //Hypovolemia Patch
@@ -144,35 +99,38 @@ namespace BloodMage
                     if (__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
                     {
                         __instance.m_ownerCharacter.Stats.ReceiveDamage(__instance.ManaCost);
-                        __instance.ManaCost = 0f;
+                        return false;
                     }
                     else if (__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineEntanglement))
                     {
                         float derived = __instance.ManaCost / 2f;
                         __instance.m_ownerCharacter.Stats.UseMana(null, __instance.m_ownerCharacter.Stats.GetFinalManaConsumption(null, derived));
                         __instance.m_ownerCharacter.Stats.ReceiveDamage(derived);
-                        __instance.ManaCost = 0f;
+                        return false;
                     }
                 }
-
                 return true;
             }
         }
 
+        //Leyline Abandonment Patch
+        //Force game to allow casting with 0 mana
         [HarmonyPatch(typeof(Skill), nameof(Skill.HasEnoughMana))]
         public class LeylineAbandonmentManaOverride
         {
-            static bool Prefix(Skill __instance, ref bool __result)
+            static bool Prefix(Skill __instance, bool _tryingToActivate, ref bool __result)
             {
-                if(__instance.m_characterUsing.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
+                if(__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
                 {
-                    __result = true;
+                    __result = __instance.HasEnoughHealth(_tryingToActivate);
                     return false;
                 }
                 return true;
             }
         }
 
+        //Leyline Abandonment Patch
+        //Disallow restoration of burnt mana set by passive.
         [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.RestoreBurntMana))]
         public class LeylineAbandonmentBurntManaRestoreOverride
         {
@@ -186,6 +144,8 @@ namespace BloodMage
             }
         }
         
+        //Leyline Abandonment Patch
+        //Force burnt mana to be 100% of mana while LA learned.
         [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.IncreaseBurntMana))]
         public class LeylineAbandonmentBurntManaPatch
         {
@@ -200,7 +160,10 @@ namespace BloodMage
             }
         }
 
-        //Leyline Abandonment Reversion
+        //Leyline Abandonment Patch
+        //Takes players current max mana and gets hp/stam derivation
+        //Burns all of players mana to remove as resource.
+        //Adds derived hp and stamina to appropriate pools.
         [HarmonyPatch(typeof(CharacterKnowledge), nameof(CharacterKnowledge.AddItem))]
         public class LeylinePassivesLearnedPatch
         {
@@ -220,7 +183,7 @@ namespace BloodMage
 
                         BloodMage.Log.LogMessage($"Mana current {__instance.m_character.Stats.MaxMana}");
                         float currentMana = __instance.m_character.Stats.MaxMana;
-                        __instance.m_character.Stats.IncreaseBurntMana(100);
+                        __instance.m_character.Stats.m_burntMana = __instance.m_character.Stats.MaxMana;
                         BloodMage.Log.LogMessage($"New burnt Mana current {__instance.m_character.Stats.m_burntMana}");
 
                         __instance.m_character.Stats.m_maxHealthStat.BaseValue += derived;
@@ -232,7 +195,12 @@ namespace BloodMage
             }
         }
 
-        //The purpose behind this patch is to prevent players from investing further in the Leyline
+        //Leyline Abandonment Patch
+        //Undoes AddItem patch
+
+
+        //Leyline Abandonment Patch
+        //Supress further investment in the leyline.
         [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.SetManaPoint))]
         public class LeylineAbandonmentManaPointPatch
         {
@@ -247,10 +215,10 @@ namespace BloodMage
             }
         }
 
-        //Leyline Abandonment will also cause any mana gained to instead be
-        //gained as its counterpart health and stamina
+        //Leyline Abandonment Patch
+        //When more max mana gained, hp and stamina calculated and  burnt mana maxed again.
         [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.AddStatStack))]
-        public class AddStatStackPatch
+        public class LeylineAbandonmentAddStackPatch
         {
             static void Postfix(CharacterStats __instance, Tag _stat, StatStack _stack, bool _multiplier)
             {
@@ -258,12 +226,36 @@ namespace BloodMage
                 {
                     if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
                     {
-                        __instance.m_character.Stats.RemoveStatStack(_stat, _stack.SourceID, _multiplier);
+                        __instance.m_burntMana = __instance.MaxMana;
 
                         float derived = _stack.RawValue * .25f; //20 mana -> 5 hp and 5 stamina, 1/4 of 20
                         BloodMage.Log.LogMessage($"Health/stamina derived {derived}");
                         __instance.m_character.Stats.m_maxHealthStat.BaseValue = __instance.m_character.Stats.m_maxHealthStat.BaseValue + derived;
                         __instance.m_character.Stats.m_maxStamina.BaseValue = __instance.m_character.Stats.m_maxStamina.BaseValue + derived;
+                    }
+                }
+            }
+        }
+
+        //Leyline Abandonment Patch
+        //Undo stat fiddlings from the adding patch.
+        [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.RemoveStatStack))]
+        public class LeylineAbandonmentStackRemovePatch
+        {
+            static void Prefix(CharacterStats __instance, Tag _stat, string _sourceID, bool _multiplier)
+            {
+                if(_stat.TagName == "MaxMana")
+                {
+                    if(__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
+                    {
+                        StatStack stack = __instance.m_maxManaStat.m_rawStack[_sourceID];
+
+                        float derived = stack.RawValue * .25f;
+
+                        __instance.m_character.Stats.m_maxHealthStat.BaseValue = __instance.m_character.Stats.m_maxHealthStat.BaseValue - derived;
+                        __instance.m_character.Stats.m_maxStamina.BaseValue = __instance.m_character.Stats.m_maxStamina.BaseValue - derived;
+
+                        __instance.m_burntMana = __instance.MaxMana;
                     }
                 }
             }
