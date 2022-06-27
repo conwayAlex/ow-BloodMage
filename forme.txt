@@ -1,11 +1,11 @@
 
 
 *Skills*
-Open Vein -28000 - done
+Harness Blood -28000 - done
 Hypovolemia -28001 - done, needs balanced
 Vile Word: Manipulate -28002
 Vile Word: Harm -28003
-Vile Word: -28004
+Vile Word: Exchange -28004
 Vile Pact -28006
 Leyline Abandonment -28007 - not started
 Leyline Entanglement -28008

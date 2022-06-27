@@ -24,11 +24,40 @@
   <EffectBehaviour>Destroy</EffectBehaviour>
   <EffectTransforms>
     <SL_EffectTransform>
-      <TransformName />
+      <TransformName>Effects</TransformName>
       <Position xsi:nil="true" />
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
-      <Effects />
+      <Effects>
+        <SL_Effect xsi:type="SL_AffectHealth">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>20</AffectQuantity>
+          <IsModifier>false</IsModifier>
+          <AffectQuantityAI>0</AffectQuantityAI>
+          <InformSourceCharacter>false</InformSourceCharacter>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectStamina">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>-40</AffectQuantity>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectFatigue">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>-100</AffectQuantity>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectBurntStamina">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>5</AffectQuantity>
+          <IsModifier>false</IsModifier>
+        </SL_Effect>
+      </Effects>
       <EffectConditions>
         <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
           <Invert>false</Invert>
@@ -36,6 +65,51 @@
           <CheckOwner>false</CheckOwner>
           <StatusSelectorType>StatusSpecific</StatusSelectorType>
           <SelectorValue>Bleeding</SelectorValue>
+        </SL_EffectCondition>
+      </EffectConditions>
+    </SL_EffectTransform>
+    <SL_EffectTransform>
+      <TransformName>Effects</TransformName>
+      <Position xsi:nil="true" />
+      <Rotation xsi:nil="true" />
+      <Scale xsi:nil="true" />
+      <Effects>
+        <SL_Effect xsi:type="SL_AffectHealth">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>35</AffectQuantity>
+          <IsModifier>false</IsModifier>
+          <AffectQuantityAI>0</AffectQuantityAI>
+          <InformSourceCharacter>false</InformSourceCharacter>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectStamina">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>-70</AffectQuantity>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectFatigue">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>-200</AffectQuantity>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectBurntStamina">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>10</AffectQuantity>
+          <IsModifier>false</IsModifier>
+        </SL_Effect>
+      </Effects>
+      <EffectConditions>
+        <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+          <Invert>false</Invert>
+          <DiseaseAge>0</DiseaseAge>
+          <CheckOwner>false</CheckOwner>
+          <StatusSelectorType>StatusSpecific</StatusSelectorType>
+          <SelectorValue>Bleeding +</SelectorValue>
         </SL_EffectCondition>
       </EffectConditions>
     </SL_EffectTransform>

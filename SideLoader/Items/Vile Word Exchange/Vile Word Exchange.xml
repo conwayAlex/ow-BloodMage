@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <SL_AttackSkill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Target_ItemID>8100220</Target_ItemID>
-  <New_ItemID>-28003</New_ItemID>
-  <Name>Vile Word: Harm</Name>
+  <Target_ItemID>-28002</Target_ItemID>
+  <New_ItemID>-28004</New_ItemID>
+  <Name>Vile Word: Exchange</Name>
   <Description>Does nothing unless bleeding.</Description>
   <LegacyItemID>-1</LegacyItemID>
   <IsPickable>false</IsPickable>
@@ -42,23 +42,22 @@
           <NoAim>false</NoAim>
           <TargetType>Enemies</TargetType>
           <TransformName>ShooterTransform</TransformName>
-          <BaseProjectile>BulletBlood</BaseProjectile>
-          <ProjectileShots />
+          <BaseProjectile>BloodMageHeal</BaseProjectile>
           <InstantiatedAmount>1</InstantiatedAmount>
           <Lifespan>3</Lifespan>
           <LateShootTime>0.1</LateShootTime>
-          <Unblockable>false</Unblockable>
+          <Unblockable>true</Unblockable>
           <EffectsOnlyIfHitCharacter>false</EffectsOnlyIfHitCharacter>
           <EndMode>Normal</EndMode>
           <DisableOnHit>false</DisableOnHit>
           <IgnoreShooterCollision>true</IgnoreShooterCollision>
-          <TargetingMode>OwnerTarget</TargetingMode>
+          <TargetingMode>NONE</TargetingMode>
           <TargetCountPerProjectile>1</TargetCountPerProjectile>
           <TargetRange>25</TargetRange>
           <AutoTarget>false</AutoTarget>
           <AutoTargetMaxAngle>360</AutoTargetMaxAngle>
           <AutoTargetRange>5</AutoTargetRange>
-          <ProjectileForce>25</ProjectileForce>
+          <ProjectileForce>999</ProjectileForce>
           <AddDirection>
             <x>0</x>
             <y>0</y>
@@ -72,7 +71,7 @@
           <YMagnitudeAffect>0</YMagnitudeAffect>
           <YMagnitudeForce>0</YMagnitudeForce>
           <DefenseLength>3</DefenseLength>
-          <DefenseRange>3</DefenseRange>
+          <DefenseRange>0</DefenseRange>
           <CameraAddYDirection>0</CameraAddYDirection>
           <ImpactSoundMaterial>Flesh</ImpactSoundMaterial>
           <LightIntensityFade>
@@ -100,26 +99,87 @@
                   <OverrideCategory>None</OverrideCategory>
                   <Damage>
                     <SL_Damage>
-                      <Damage>10</Damage>
+                      <Damage>20</Damage>
                       <Type>Decay</Type>
                     </SL_Damage>
                   </Damage>
                   <Damages_AI />
-                  <Knockback>0</Knockback>
+                  <Knockback>15</Knockback>
                   <HitInventory>false</HitInventory>
                   <IgnoreHalfResistances>false</IgnoreHalfResistances>
                 </SL_Effect>
-                <SL_Effect xsi:type="SL_AddStatusEffect">
+                <SL_Effect xsi:type="SL_RemoveStatusEffect">
                   <Delay>0</Delay>
                   <SyncType>OwnerSync</SyncType>
                   <OverrideCategory>None</OverrideCategory>
-                  <StatusEffect>Bleeding</StatusEffect>
-                  <ChanceToContract>100</ChanceToContract>
-                  <AffectController>false</AffectController>
-                  <AdditionalLevel>0</AdditionalLevel>
-                  <NoDealer>false</NoDealer>
+                  <CleanseType>StatusSpecific</CleanseType>
+                  <SelectorValue>Bleeding</SelectorValue>
+                </SL_Effect>
+                <SL_Effect xsi:type="SL_AffectHealthParentOwner">
+                  <Delay>0</Delay>
+                  <SyncType>OwnerSync</SyncType>
+                  <OverrideCategory>None</OverrideCategory>
+                  <AffectQuantity>5</AffectQuantity>
+                  <Requires_AffectedChar>true</Requires_AffectedChar>
+                  <IsModifier>false</IsModifier>
                 </SL_Effect>
               </Effects>
+              <EffectConditions>
+                <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+                  <Invert>false</Invert>
+                  <DiseaseAge>0</DiseaseAge>
+                  <CheckOwner>false</CheckOwner>
+                  <StatusSelectorType>StatusSpecific</StatusSelectorType>
+                  <SelectorValue>Bleeding</SelectorValue>
+                </SL_EffectCondition>
+              </EffectConditions>
+            </SL_EffectTransform>
+            <SL_EffectTransform>
+              <TransformName>HitEffects</TransformName>
+              <Position xsi:nil="true" />
+              <Rotation xsi:nil="true" />
+              <Scale xsi:nil="true" />
+              <Effects>
+                <SL_Effect xsi:type="SL_PunctualDamage">
+                  <Delay>0</Delay>
+                  <SyncType>OwnerSync</SyncType>
+                  <OverrideCategory>None</OverrideCategory>
+                  <Damage>
+                    <SL_Damage>
+                      <Damage>40</Damage>
+                      <Type>Decay</Type>
+                    </SL_Damage>
+                  </Damage>
+                  <Damages_AI />
+                  <Knockback>30</Knockback>
+                  <HitInventory>false</HitInventory>
+                  <IgnoreHalfResistances>false</IgnoreHalfResistances>
+                </SL_Effect>
+                <SL_Effect xsi:type="SL_RemoveStatusEffect">
+                  <Delay>0</Delay>
+                  <SyncType>OwnerSync</SyncType>
+                  <OverrideCategory>None</OverrideCategory>
+                  <CleanseType>StatusSpecific</CleanseType>
+                  <SelectorValue>Bleeding +</SelectorValue>
+                </SL_Effect>
+                <SL_Effect xsi:type="SL_AffectHealthParentOwner">
+                  <Delay>0</Delay>
+                  <SyncType>OwnerSync</SyncType>
+                  <OverrideCategory>None</OverrideCategory>
+                  <AffectQuantity>10</AffectQuantity>
+                  <Requires_AffectedChar>true</Requires_AffectedChar>
+                  <IsModifier>false</IsModifier>
+                </SL_Effect>
+              </Effects>
+              <EffectConditions>
+                <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+                  <Invert>false</Invert>
+                  <DiseaseAge>0</DiseaseAge>
+                  <CheckOwner>false</CheckOwner>
+                  <StatusSelectorType>StatusSpecific</StatusSelectorType>
+                  <SelectorValue>Bleeding +</SelectorValue>
+                </SL_EffectCondition>
+              </EffectConditions>
             </SL_EffectTransform>
           </ProjectileEffects>
         </SL_Effect>
@@ -154,23 +214,23 @@
           <NoAim>false</NoAim>
           <TargetType>Enemies</TargetType>
           <TransformName>ShooterTransform</TransformName>
-          <BaseProjectile>BulletBlood</BaseProjectile>
+          <BaseProjectile>BloodMageHeal</BaseProjectile>
           <ProjectileShots />
           <InstantiatedAmount>1</InstantiatedAmount>
           <Lifespan>3</Lifespan>
           <LateShootTime>0.1</LateShootTime>
-          <Unblockable>false</Unblockable>
+          <Unblockable>true</Unblockable>
           <EffectsOnlyIfHitCharacter>false</EffectsOnlyIfHitCharacter>
           <EndMode>Normal</EndMode>
           <DisableOnHit>false</DisableOnHit>
           <IgnoreShooterCollision>true</IgnoreShooterCollision>
-          <TargetingMode>OwnerTarget</TargetingMode>
+          <TargetingMode>NONE</TargetingMode>
           <TargetCountPerProjectile>1</TargetCountPerProjectile>
           <TargetRange>25</TargetRange>
           <AutoTarget>false</AutoTarget>
           <AutoTargetMaxAngle>0</AutoTargetMaxAngle>
           <AutoTargetRange>0</AutoTargetRange>
-          <ProjectileForce>0</ProjectileForce>
+          <ProjectileForce>999</ProjectileForce>
           <AddDirection>
             <x>0</x>
             <y>0</y>
@@ -197,7 +257,7 @@
             <z>0</z>
           </PointOffset>
           <TrailEnabled>false</TrailEnabled>
-          <TrailTime>0.075</TrailTime>
+          <TrailTime>0</TrailTime>
           <EffectBehaviour>Destroy</EffectBehaviour>
           <ProjectileEffects>
             <SL_EffectTransform>
@@ -212,26 +272,87 @@
                   <OverrideCategory>None</OverrideCategory>
                   <Damage>
                     <SL_Damage>
-                      <Damage>20</Damage>
+                      <Damage>30</Damage>
                       <Type>Decay</Type>
                     </SL_Damage>
                   </Damage>
                   <Damages_AI />
-                  <Knockback>30</Knockback>
+                  <Knockback>20</Knockback>
                   <HitInventory>false</HitInventory>
                   <IgnoreHalfResistances>false</IgnoreHalfResistances>
                 </SL_Effect>
-                <SL_Effect xsi:type="SL_AddStatusEffect">
+                <SL_Effect xsi:type="SL_RemoveStatusEffect">
                   <Delay>0</Delay>
                   <SyncType>OwnerSync</SyncType>
                   <OverrideCategory>None</OverrideCategory>
-                  <StatusEffect>Bleeding</StatusEffect>
-                  <ChanceToContract>100</ChanceToContract>
-                  <AffectController>false</AffectController>
-                  <AdditionalLevel>0</AdditionalLevel>
-                  <NoDealer>false</NoDealer>
+                  <CleanseType>StatusSpecific</CleanseType>
+                  <SelectorValue>Bleeding</SelectorValue>
+                </SL_Effect>
+                <SL_Effect xsi:type="SL_AffectHealthParentOwner">
+                  <Delay>0</Delay>
+                  <SyncType>OwnerSync</SyncType>
+                  <OverrideCategory>None</OverrideCategory>
+                  <AffectQuantity>10</AffectQuantity>
+                  <Requires_AffectedChar>true</Requires_AffectedChar>
+                  <IsModifier>false</IsModifier>
                 </SL_Effect>
               </Effects>
+              <EffectConditions>
+                <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+                  <Invert>false</Invert>
+                  <DiseaseAge>0</DiseaseAge>
+                  <CheckOwner>false</CheckOwner>
+                  <StatusSelectorType>StatusSpecific</StatusSelectorType>
+                  <SelectorValue>Bleeding</SelectorValue>
+                </SL_EffectCondition>
+              </EffectConditions>
+            </SL_EffectTransform>
+            <SL_EffectTransform>
+              <TransformName>HitEffects</TransformName>
+              <Position xsi:nil="true" />
+              <Rotation xsi:nil="true" />
+              <Scale xsi:nil="true" />
+              <Effects>
+                <SL_Effect xsi:type="SL_PunctualDamage">
+                  <Delay>0</Delay>
+                  <SyncType>OwnerSync</SyncType>
+                  <OverrideCategory>None</OverrideCategory>
+                  <Damage>
+                    <SL_Damage>
+                      <Damage>50</Damage>
+                      <Type>Decay</Type>
+                    </SL_Damage>
+                  </Damage>
+                  <Damages_AI />
+                  <Knockback>40</Knockback>
+                  <HitInventory>false</HitInventory>
+                  <IgnoreHalfResistances>false</IgnoreHalfResistances>
+                </SL_Effect>
+                <SL_Effect xsi:type="SL_RemoveStatusEffect">
+                  <Delay>0</Delay>
+                  <SyncType>OwnerSync</SyncType>
+                  <OverrideCategory>None</OverrideCategory>
+                  <CleanseType>StatusSpecific</CleanseType>
+                  <SelectorValue>Bleeding +</SelectorValue>
+                </SL_Effect>
+                <SL_Effect xsi:type="SL_AffectHealthParentOwner">
+                  <Delay>0</Delay>
+                  <SyncType>OwnerSync</SyncType>
+                  <OverrideCategory>None</OverrideCategory>
+                  <AffectQuantity>15</AffectQuantity>
+                  <Requires_AffectedChar>true</Requires_AffectedChar>
+                  <IsModifier>false</IsModifier>
+                </SL_Effect>
+              </Effects>
+              <EffectConditions>
+                <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+                  <Invert>false</Invert>
+                  <DiseaseAge>0</DiseaseAge>
+                  <CheckOwner>false</CheckOwner>
+                  <StatusSelectorType>StatusSpecific</StatusSelectorType>
+                  <SelectorValue>Bleeding +</SelectorValue>
+                </SL_EffectCondition>
+              </EffectConditions>
             </SL_EffectTransform>
           </ProjectileEffects>
         </SL_Effect>
@@ -247,7 +368,7 @@
       </EffectConditions>
     </SL_EffectTransform>
   </EffectTransforms>
-  <Cooldown>3</Cooldown>
+  <Cooldown>10</Cooldown>
   <StaminaCost>0</StaminaCost>
   <ManaCost>0</ManaCost>
   <DurabilityCost>0</DurabilityCost>
@@ -256,7 +377,7 @@
   <StopStartVFXOnEnd>false</StopStartVFXOnEnd>
   <StartVFX>VFXRuneShim</StartVFX>
   <RequiredItems />
-  <HealthCost>2.5</HealthCost>
+  <HealthCost>5</HealthCost>
   <RequiredPlayerType>Normal</RequiredPlayerType>
   <AmmunitionTypes />
   <RequiredOffHandTypes />
