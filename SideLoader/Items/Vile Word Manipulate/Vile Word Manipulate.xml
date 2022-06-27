@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<SL_AttackSkill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Target_ItemID>8100220</Target_ItemID>
+  <New_ItemID>-28002</New_ItemID>
+  <Name>Vile Word: Manipulate</Name>
+  <Description>Does nothing unless bleeding.</Description>
+  <LegacyItemID>-1</LegacyItemID>
+  <IsPickable>false</IsPickable>
+  <IsUsable>false</IsUsable>
+  <QtyRemovedOnUse>1</QtyRemovedOnUse>
+  <GroupItemInDisplay>false</GroupItemInDisplay>
+  <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
+  <RepairedInRest>true</RepairedInRest>
+  <BehaviorOnNoDurability>NotSet</BehaviorOnNoDurability>
+  <CastType>WriteRune</CastType>
+  <CastModifier>Immobilized</CastModifier>
+  <CastLocomotionEnabled>false</CastLocomotionEnabled>
+  <MobileCastMovementMult>-1</MobileCastMovementMult>
+  <CastSheatheRequired>1</CastSheatheRequired>
+  <OverrideSellModifier>-1</OverrideSellModifier>
+  <Tags />
+  <ExtensionsEditBehaviour>NONE</ExtensionsEditBehaviour>
+  <ItemExtensions />
+  <EffectBehaviour>Destroy</EffectBehaviour>
+  <EffectTransforms>
+    <SL_EffectTransform>
+      <TransformName>Effects</TransformName>
+      <Position xsi:nil="true" />
+      <Rotation xsi:nil="true" />
+      <Scale xsi:nil="true" />
+      <Effects>
+        <SL_Effect xsi:type="SL_AffectHealth">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>20</AffectQuantity>
+          <IsModifier>false</IsModifier>
+          <AffectQuantityAI>0</AffectQuantityAI>
+          <InformSourceCharacter>false</InformSourceCharacter>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectStamina">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>-40</AffectQuantity>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectFatigue">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>-100</AffectQuantity>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectBurntStamina">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>5</AffectQuantity>
+          <IsModifier>false</IsModifier>
+        </SL_Effect>
+      </Effects>
+      <EffectConditions>
+        <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+          <Invert>false</Invert>
+          <DiseaseAge>0</DiseaseAge>
+          <CheckOwner>false</CheckOwner>
+          <StatusSelectorType>StatusSpecific</StatusSelectorType>
+          <SelectorValue>Bleeding</SelectorValue>
+        </SL_EffectCondition>
+      </EffectConditions>
+    </SL_EffectTransform>
+    <SL_EffectTransform>
+      <TransformName>Effects</TransformName>
+      <Position xsi:nil="true" />
+      <Rotation xsi:nil="true" />
+      <Scale xsi:nil="true" />
+      <Effects>
+        <SL_Effect xsi:type="SL_AffectHealth">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>35</AffectQuantity>
+          <IsModifier>false</IsModifier>
+          <AffectQuantityAI>0</AffectQuantityAI>
+          <InformSourceCharacter>false</InformSourceCharacter>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectStamina">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>-70</AffectQuantity>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectFatigue">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>-200</AffectQuantity>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_AffectBurntStamina">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>10</AffectQuantity>
+          <IsModifier>false</IsModifier>
+        </SL_Effect>
+      </Effects>
+      <EffectConditions>
+        <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+          <Invert>false</Invert>
+          <DiseaseAge>0</DiseaseAge>
+          <CheckOwner>false</CheckOwner>
+          <StatusSelectorType>StatusSpecific</StatusSelectorType>
+          <SelectorValue>Bleeding +</SelectorValue>
+        </SL_EffectCondition>
+      </EffectConditions>
+    </SL_EffectTransform>
+  </EffectTransforms>
+  <Cooldown>10</Cooldown>
+  <StaminaCost>0</StaminaCost>
+  <ManaCost>0</ManaCost>
+  <DurabilityCost>0</DurabilityCost>
+  <DurabilityCostPercent>0</DurabilityCostPercent>
+  <VFXOnStart>true</VFXOnStart>
+  <StopStartVFXOnEnd>false</StopStartVFXOnEnd>
+  <StartVFX>VFXRuneShim</StartVFX>
+  <RequiredItems />
+  <HealthCost>5</HealthCost>
+  <RequiredPlayerType>Normal</RequiredPlayerType>
+  <AmmunitionTypes />
+  <RequiredOffHandTypes />
+  <RequiredWeaponTypes />
+  <RequiredWeaponTags />
+  <RequireImbue>false</RequireImbue>
+  <AmmunitionAmount xsi:nil="true" />
+</SL_AttackSkill>

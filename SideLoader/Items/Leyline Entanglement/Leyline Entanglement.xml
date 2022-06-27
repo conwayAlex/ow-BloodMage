@@ -1,15 +1,13 @@
 <?xml version="1.0"?>
 <SL_Skill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Target_ItemID>8205090</Target_ItemID>
-  <New_ItemID>-28003</New_ItemID>
-  <Name>Dedication of Blood</Name>
-  <Description>You regain 0.2 health per second.
-
-This is a constant effect.</Description>
+  <Target_ItemID>-28007</Target_ItemID>
+  <New_ItemID>-28008</New_ItemID>
+  <Name>Leyline Entanglement</Name>
+  <Description>Half of mana costs are now taken from health instead of mana.</Description>
   <LegacyItemID>-1</LegacyItemID>
   <IsPickable>false</IsPickable>
   <IsUsable>false</IsUsable>
-  <QtyRemovedOnUse>1</QtyRemovedOnUse>
+  <QtyRemovedOnUse>0</QtyRemovedOnUse>
   <GroupItemInDisplay>false</GroupItemInDisplay>
   <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
   <RepairedInRest>true</RepairedInRest>
@@ -24,28 +22,7 @@ This is a constant effect.</Description>
   <ExtensionsEditBehaviour>NONE</ExtensionsEditBehaviour>
   <ItemExtensions />
   <EffectBehaviour>Destroy</EffectBehaviour>
-  <EffectTransforms>
-    <SL_EffectTransform>
-      <TransformName>Passive</TransformName>
-      <Position xsi:nil="true" />
-      <Rotation xsi:nil="true" />
-      <Scale xsi:nil="true" />
-      <Effects>
-        <SL_Effect xsi:type="SL_AffectStat">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <Stat_Tag>HealthRegen</Stat_Tag>
-          <AffectQuantity>0.2</AffectQuantity>
-          <IsModifier>false</IsModifier>
-          <Tags />
-          <Duration>-1</Duration>
-        </SL_Effect>
-      </Effects>
-      <EffectConditions />
-      <ChildEffects />
-    </SL_EffectTransform>
-  </EffectTransforms>
+  <EffectTransforms />
   <Cooldown>0</Cooldown>
   <StaminaCost>0</StaminaCost>
   <ManaCost>0</ManaCost>

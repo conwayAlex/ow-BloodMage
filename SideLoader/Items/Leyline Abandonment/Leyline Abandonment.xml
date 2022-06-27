@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <SL_Skill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Target_ItemID>8205070</Target_ItemID>
-  <New_ItemID>-28002</New_ItemID>
-  <Name>Humour Maintenance</Name>
-  <Description>While bleeding, decay damage and resistance is increased. Extreme Bleeding amplifies this effect.</Description>
+  <Target_ItemID>8205170</Target_ItemID>
+  <New_ItemID>-28007</New_ItemID>
+  <Name>Leyline Abandonment</Name>
+  <Description>Reverts the effects of Leyline communion.</Description>
   <LegacyItemID>-1</LegacyItemID>
   <IsPickable>false</IsPickable>
   <IsUsable>false</IsUsable>
-  <QtyRemovedOnUse>1</QtyRemovedOnUse>
+  <QtyRemovedOnUse>0</QtyRemovedOnUse>
   <GroupItemInDisplay>false</GroupItemInDisplay>
   <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
   <RepairedInRest>true</RepairedInRest>
@@ -22,26 +22,7 @@
   <ExtensionsEditBehaviour>NONE</ExtensionsEditBehaviour>
   <ItemExtensions />
   <EffectBehaviour>Destroy</EffectBehaviour>
-  <EffectTransforms>
-    <SL_EffectTransform>
-      <TransformName>Passive</TransformName>
-      <Position xsi:nil="true" />
-      <Rotation xsi:nil="true" />
-      <Scale xsi:nil="true" />
-      <Effects>
-        <SL_Effect xsi:type="SL_AffectStat">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <Stat_Tag>DrinkDepleteRate</Stat_Tag>
-          <AffectQuantity>10.554</AffectQuantity>
-          <IsModifier>false</IsModifier>
-          <Duration>-1</Duration>
-        </SL_Effect>
-      </Effects>
-      <ChildEffects />
-    </SL_EffectTransform>
-  </EffectTransforms>
+  <EffectTransforms />
   <Cooldown>0</Cooldown>
   <StaminaCost>0</StaminaCost>
   <ManaCost>0</ManaCost>
