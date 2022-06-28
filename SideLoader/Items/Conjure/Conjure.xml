@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<SL_Skill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Target_ItemID>8100150</Target_ItemID>
+  <New_ItemID>8100150</New_ItemID>
+  <Name>Conjure</Name>
+  <Description>Spell which does nothing on its own, but can be combined with other abilities.</Description>
+  <LegacyItemID>-1</LegacyItemID>
+  <IsPickable>false</IsPickable>
+  <IsUsable>false</IsUsable>
+  <QtyRemovedOnUse>1</QtyRemovedOnUse>
+  <GroupItemInDisplay>false</GroupItemInDisplay>
+  <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
+  <RepairedInRest>true</RepairedInRest>
+  <BehaviorOnNoDurability>NotSet</BehaviorOnNoDurability>
+  <CastType>SummonGhost</CastType>
+  <CastModifier>Immobilized</CastModifier>
+  <CastLocomotionEnabled>false</CastLocomotionEnabled>
+  <MobileCastMovementMult>-1</MobileCastMovementMult>
+  <CastSheatheRequired>1</CastSheatheRequired>
+  <OverrideSellModifier>-1</OverrideSellModifier>
+  <Tags />
+  <ExtensionsEditBehaviour>NONE</ExtensionsEditBehaviour>
+  <ItemExtensions />
+  <EffectBehaviour>NONE</EffectBehaviour>
+  <EffectTransforms>
+    <SL_EffectTransform>
+      <TransformName>Bloodrocute Normal</TransformName>
+      <Position xsi:nil="true" />
+      <Rotation xsi:nil="true" />
+      <Scale xsi:nil="true" />
+      <Effects />
+      <EffectConditions />
+      <ChildEffects>
+        <SL_EffectTransform>
+          <TransformName>ExtraEffects</TransformName>
+          <Position xsi:nil="true" />
+          <Rotation xsi:nil="true" />
+          <Scale xsi:nil="true" />
+          <Effects>
+            <SL_Effect xsi:type="SL_PlaySoundEffect">
+              <Delay>0</Delay>
+              <SyncType>OwnerSync</SyncType>
+              <OverrideCategory>None</OverrideCategory>
+              <Sounds>
+                <Sounds>SFX_SKILL_Swarm</Sounds>
+              </Sounds>
+              <Follow>false</Follow>
+              <MinPitch>1</MinPitch>
+              <MaxPitch>1</MaxPitch>
+            </SL_Effect>
+            <SL_Effect xsi:type="SL_ShootProjectile">
+              <Delay>0</Delay>
+              <SyncType>OwnerSync</SyncType>
+              <OverrideCategory>None</OverrideCategory>
+              <CastPosition>Local</CastPosition>
+              <LocalPositionAdd>
+                <x>0</x>
+                <y>1.5</y>
+                <z>0</z>
+              </LocalPositionAdd>
+              <NoAim>false</NoAim>
+              <TargetType>Enemies</TargetType>
+              <BaseProjectile>BulletLightning</BaseProjectile>
+              <InstantiatedAmount>1</InstantiatedAmount>
+              <Lifespan>3</Lifespan>
+              <LateShootTime>0.1</LateShootTime>
+              <Unblockable>false</Unblockable>
+              <EffectsOnlyIfHitCharacter>false</EffectsOnlyIfHitCharacter>
+              <EndMode>Normal</EndMode>
+              <DisableOnHit>false</DisableOnHit>
+              <IgnoreShooterCollision>false</IgnoreShooterCollision>
+              <TargetingMode>NONE</TargetingMode>
+              <TargetCountPerProjectile>0</TargetCountPerProjectile>
+              <TargetRange>25</TargetRange>
+              <AutoTarget>false</AutoTarget>
+              <AutoTargetMaxAngle>0</AutoTargetMaxAngle>
+              <AutoTargetRange>0</AutoTargetRange>
+              <ProjectileForce>100</ProjectileForce>
+              <AddDirection>
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+              </AddDirection>
+              <AddRotationForce>
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+              </AddRotationForce>
+              <YMagnitudeAffect>0</YMagnitudeAffect>
+              <YMagnitudeForce>0</YMagnitudeForce>
+              <DefenseLength>0</DefenseLength>
+              <DefenseRange>0</DefenseRange>
+              <CameraAddYDirection>0</CameraAddYDirection>
+              <ImpactSoundMaterial>Goo</ImpactSoundMaterial>
+              <LightIntensityFade>
+                <x>0</x>
+                <y>0</y>
+              </LightIntensityFade>
+              <PointOffset>
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+              </PointOffset>
+              <TrailEnabled>false</TrailEnabled>
+              <TrailTime>0</TrailTime>
+              <EffectBehaviour>Destroy</EffectBehaviour>
+              <ProjectileEffects>
+                <SL_EffectTransform>
+                  <TransformName>HitEffects</TransformName>
+                  <Position xsi:nil="true" />
+                  <Rotation xsi:nil="true" />
+                  <Scale xsi:nil="true" />
+                  <Effects>
+                    <SL_Effect xsi:type="SL_PunctualDamage">
+                      <Delay>0</Delay>
+                      <SyncType>OwnerSync</SyncType>
+                      <OverrideCategory>None</OverrideCategory>
+                      <Damage>
+                        <SL_Damage>
+                          <Damage>10</Damage>
+                          <Type>Decay</Type>
+                        </SL_Damage>
+                        <SL_Damage>
+                          <Damage>10</Damage>
+                          <Type>Electric</Type>
+                        </SL_Damage>
+                      </Damage>
+                      <Damages_AI />
+                      <Knockback>0</Knockback>
+                      <HitInventory>false</HitInventory>
+                      <IgnoreHalfResistances>false</IgnoreHalfResistances>
+                    </SL_Effect>
+                  </Effects>
+                </SL_EffectTransform>
+              </ProjectileEffects>
+            </SL_Effect>
+            <SL_Effect xsi:type="SL_AddStatusEffectBuildUp">
+              <Delay>0</Delay>
+              <SyncType>OwnerSync</SyncType>
+              <OverrideCategory>None</OverrideCategory>
+              <StatusEffect>Hemorrhage</StatusEffect>
+              <Buildup>15</Buildup>
+              <BuildUpMultiplier>1</BuildUpMultiplier>
+              <BypassCounter>false</BypassCounter>
+              <AffectController>false</AffectController>
+            </SL_Effect>
+          </Effects>
+          <EffectConditions>
+            <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+              <Invert>false</Invert>
+              <DiseaseAge>0</DiseaseAge>
+              <CheckOwner>false</CheckOwner>
+              <StatusSelectorType>StatusSpecific</StatusSelectorType>
+              <SelectorValue>Bleeding</SelectorValue>
+            </SL_EffectCondition>
+            <SL_EffectCondition xsi:type="SL_PassiveSkillCondition">
+              <Invert>false</Invert>
+              <ReqSkillID>-28009</ReqSkillID>
+            </SL_EffectCondition>
+          </EffectConditions>
+          <ChildEffects />
+        </SL_EffectTransform>
+      </ChildEffects>
+    </SL_EffectTransform>
+  </EffectTransforms>
+  <Cooldown>8</Cooldown>
+  <StaminaCost>0</StaminaCost>
+  <ManaCost>10</ManaCost>
+  <DurabilityCost>0</DurabilityCost>
+  <DurabilityCostPercent>0</DurabilityCostPercent>
+  <VFXOnStart>true</VFXOnStart>
+  <StopStartVFXOnEnd>false</StopStartVFXOnEnd>
+  <StartVFX>VFXForceRaise</StartVFX>
+  <RequiredItems />
+  <HealthCost>0</HealthCost>
+  <RequiredPlayerType>Normal</RequiredPlayerType>
+</SL_Skill>
