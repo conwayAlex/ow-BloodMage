@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <SL_StatusEffect xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TargetStatusIdentifier>Bleeding</TargetStatusIdentifier>
-  <NewStatusID>34</NewStatusID>
+  <NewStatusID>-28010</NewStatusID>
   <StatusIdentifier>Hemorrhage</StatusIdentifier>
   <Name>Hemorrhage</Name>
   <Description>Lose [E1V1]% of your health per second.</Description>
