@@ -114,7 +114,7 @@
       </EffectConditions>
     </SL_EffectTransform>
   </EffectTransforms>
-  <Cooldown>10</Cooldown>
+  <Cooldown>60</Cooldown>
   <StaminaCost>0</StaminaCost>
   <ManaCost>0</ManaCost>
   <DurabilityCost>0</DurabilityCost>

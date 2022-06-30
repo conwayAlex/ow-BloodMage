@@ -13,4 +13,7 @@ Phlebotomist -28009
 
 
 *Status Effects*
-Hemmorage
+Hemorrhage -28010
+Vile Pact Regeration -28011
+Humours Maintenance -28012
+Humours Maintenance + -28013
