@@ -76,7 +76,7 @@
       <ChildEffects />
     </SL_EffectTransform>
     <SL_EffectTransform>
-      <TransformName>Passive</TransformName>
+      <TransformName>Effects</TransformName>
       <Position xsi:nil="true" />
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />

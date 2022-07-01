@@ -206,10 +206,19 @@ namespace BloodMage
         {
             static bool Prefix(CharacterStats __instance)
             {
-                if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
+                if(__instance.m_character)
                 {
-                    BloodMage.Log.LogMessage("Mana points suppressed.");
-                    return false;
+                    if(__instance.m_character.Inventory)
+                    {
+                        if(__instance.m_character.Inventory.SkillKnowledge)
+                        {
+                            if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
+                            {
+                                BloodMage.Log.LogMessage("Mana points suppressed.");
+                                return false;
+                            }
+                        }
+                    }
                 }
                 return true;
             }

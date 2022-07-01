@@ -26,13 +26,13 @@ Can be combined with other spells for powerful effects.</Description>
   <EffectBehaviour>NONE</EffectBehaviour>
   <EffectTransforms>
     <SL_EffectTransform>
-      <TransformName>HM Normal</TransformName>
+      <TransformName>Normal HM</TransformName>
       <Position xsi:nil="true" />
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
       <ChildEffects>
         <SL_EffectTransform>
-          <TransformName>Effects</TransformName>
+          <TransformName>Normal</TransformName>
           <Position xsi:nil="true" />
           <Rotation xsi:nil="true" />
           <Scale xsi:nil="true" />
@@ -73,7 +73,7 @@ Can be combined with other spells for powerful effects.</Description>
           </EffectConditions>
         </SL_EffectTransform>
         <SL_EffectTransform>
-          <TransformName>Effects</TransformName>
+          <TransformName>Normal</TransformName>
           <Position xsi:nil="true" />
           <Rotation xsi:nil="true" />
           <Scale xsi:nil="true" />

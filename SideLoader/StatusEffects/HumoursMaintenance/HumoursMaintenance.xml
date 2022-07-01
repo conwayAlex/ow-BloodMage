@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <SL_StatusEffect xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <TargetStatusIdentifier>Possessed</TargetStatusIdentifier>
-  <NewStatusID>-28012</NewStatusID>
+  <NewStatusID>24</NewStatusID>
   <StatusIdentifier>HumoursMaintenance</StatusIdentifier>
   <Name>Humours Maintenance</Name>
   <Description>Decay Damage and Resistance +[E1V1]%.</Description>

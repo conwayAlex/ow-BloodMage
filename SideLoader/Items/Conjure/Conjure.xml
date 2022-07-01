@@ -24,7 +24,7 @@
   <EffectBehaviour>NONE</EffectBehaviour>
   <EffectTransforms>
     <SL_EffectTransform>
-      <TransformName>TidesOfBloodNormal</TransformName>
+      <TransformName>Normal TidesOfBlood</TransformName>
       <Position xsi:nil="true" />
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
@@ -32,7 +32,7 @@
       <EffectConditions />
       <ChildEffects>
         <SL_EffectTransform>
-          <TransformName>ExtraEffects</TransformName>
+          <TransformName>Normal</TransformName>
           <Position xsi:nil="true" />
           <Rotation xsi:nil="true" />
           <Scale xsi:nil="true" />
@@ -136,7 +136,7 @@
           <ChildEffects />
         </SL_EffectTransform>
         <SL_EffectTransform>
-          <TransformName>ExtraEffects</TransformName>
+          <TransformName>Normal</TransformName>
           <Position xsi:nil="true" />
           <Rotation xsi:nil="true" />
           <Scale xsi:nil="true" />
@@ -160,7 +160,7 @@
               <Delay>0</Delay>
               <SyncType>OwnerSync</SyncType>
               <OverrideCategory>None</OverrideCategory>
-              <StatusEffect>Hemmorhage</StatusEffect>
+              <StatusEffect>Hemorrhage</StatusEffect>
               <Buildup>60</Buildup>
               <BuildUpMultiplier>1</BuildUpMultiplier>
               <BypassCounter>false</BypassCounter>
