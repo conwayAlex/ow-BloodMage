@@ -38,84 +38,84 @@
   <Boots_ID>3100102</Boots_ID>
   
   <SkillTree>
-	<UID> com.llamamage.bloodmage </UID>
-	<Name> Blood Mage</Name>
+		<UID> com.llamamage.bloodmage </UID>
+		<Name> Blood Mage</Name>
 	<SigilIconName></SigilIconName>
 		<SkillRows>
 			<SL_SkillRow>
-			<RowIndex>1</RowIndex>
-			<Slots>
-				<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-				<ColumnIndex>1</ColumnIndex>
-				<SkillID>-28003</SkillID>
-				<SilverCost>50</SilverCost>
-				</SL_BaseSkillSlot>
+				<RowIndex>1</RowIndex>
+				<Slots>
+					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+						<ColumnIndex>1</ColumnIndex>
+						<SkillID>-28003</SkillID>
+						<SilverCost>50</SilverCost>
+					</SL_BaseSkillSlot>
 				
-				<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-				<ColumnIndex>3</ColumnIndex>
-				<SkillID>-28004</SkillID>
-				<SilverCost>50</SilverCost>
-				</SL_BaseSkillSlot>
-			</Slots>
+					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+						<ColumnIndex>3</ColumnIndex>
+						<SkillID>-28004</SkillID>
+						<SilverCost>50</SilverCost>
+					</SL_BaseSkillSlot>
+				</Slots>
 			</SL_SkillRow>
 			
 			<SL_SkillRow>
-			<RowIndex>2</RowIndex>
-			<Slots>
-				<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-				<ColumnIndex>2</ColumnIndex>
-				<SkillID>-28002</SkillID>
-				<SilverCost>50</SilverCost>
-				</SL_BaseSkillSlot>
-			</Slots>
+				<RowIndex>2</RowIndex>
+				<Slots>
+					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+						<ColumnIndex>2</ColumnIndex>
+						<SkillID>-28002</SkillID>
+						<SilverCost>50</SilverCost>
+					</SL_BaseSkillSlot>
+				</Slots>
 			</SL_SkillRow>
 			
 			<SL_SkillRow>
-			<RowIndex>3</RowIndex>
-			<Slots>
-				<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-              <ColumnIndex>2</ColumnIndex>
-				<SkillID>-28006</SkillID>
-				<SilverCost>500</SilverCost>
-				<Breakthrough>true</Breakthrough>
-				</SL_BaseSkillSlot>
-			</Slots>
+				<RowIndex>3</RowIndex>
+					<Slots>
+					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+						<ColumnIndex>2</ColumnIndex>
+						<SkillID>-28006</SkillID>
+						<SilverCost>500</SilverCost>
+						<Breakthrough>true</Breakthrough>
+					</SL_BaseSkillSlot>
+				</Slots>
 			</SL_SkillRow>
 			
 			<SL_SkillRow>
-			<RowIndex>4</RowIndex>
-			<Slots>
-			<SL_BaseSkillSlot xsi:type="SL_SkillSlotFork">
-			<Choice1>
-			<ColumnIndex>2</ColumnIndex>
-			<SkillID>-28007</SkillID>
-			<SilverCost>600</SilverCost>
+				<RowIndex>4</RowIndex>
+					<Slots>
+					<SL_BaseSkillSlot xsi:type="SL_SkillSlotFork">
+					<Choice1>
+						<ColumnIndex>2</ColumnIndex>
+						<SkillID>-28007</SkillID>
+						<SilverCost>600</SilverCost>
+					</Choice1>
 			
-			</Choice1>
-			<Choice2>
-			<ColumnIndex>2</ColumnIndex>
-			<SkillID>-28008</SkillID>
-			<SilverCost>600</SilverCost>
-			</Choice2>
-			</SL_BaseSkillSlot>
-			</Slots>
+					<Choice2>
+						<ColumnIndex>2</ColumnIndex>
+						<SkillID>-28008</SkillID>
+						<SilverCost>600</SilverCost>
+					</Choice2>
+					</SL_BaseSkillSlot>
+					</Slots>
 			</SL_SkillRow>
 			
 			<SL_SkillRow>
-			<RowIndex>5</RowIndex>
-			<Slots>
-				<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-				<ColumnIndex>1</ColumnIndex>
-				<SkillID>-28001</SkillID>
-				<SilverCost>600</SilverCost>
-				</SL_BaseSkillSlot>
+				<RowIndex>5</RowIndex>
+					<Slots>
+					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+						<ColumnIndex>1</ColumnIndex>
+						<SkillID>-28001</SkillID>
+						<SilverCost>600</SilverCost>
+					</SL_BaseSkillSlot>
 				
-				<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-				<ColumnIndex>3</ColumnIndex>
-				<SkillID>-28009</SkillID>
-				<SilverCost>600</SilverCost>
-				</SL_BaseSkillSlot>
-			</Slots>
+					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+						<ColumnIndex>3</ColumnIndex>
+						<SkillID>-28009</SkillID>
+						<SilverCost>600</SilverCost>
+					</SL_BaseSkillSlot>
+					</Slots>
 			</SL_SkillRow>
 		</SkillRows>
   </SkillTree>
