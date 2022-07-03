@@ -58,7 +58,7 @@
           <AutoTarget>false</AutoTarget>
           <AutoTargetMaxAngle>360</AutoTargetMaxAngle>
           <AutoTargetRange>5</AutoTargetRange>
-          <ProjectileForce>25</ProjectileForce>
+          <ProjectileForce>40</ProjectileForce>
           <AddDirection>
             <x>0</x>
             <y>0</y>
@@ -170,7 +170,7 @@
           <AutoTarget>false</AutoTarget>
           <AutoTargetMaxAngle>0</AutoTargetMaxAngle>
           <AutoTargetRange>0</AutoTargetRange>
-          <ProjectileForce>0</ProjectileForce>
+          <ProjectileForce>40</ProjectileForce>
           <AddDirection>
             <x>0</x>
             <y>0</y>

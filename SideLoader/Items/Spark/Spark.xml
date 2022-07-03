@@ -32,7 +32,7 @@ This spell can light campfires.</Description>
       <Scale xsi:nil="true" />
       <ChildEffects>
         <SL_EffectTransform>
-          <TransformName>Normal</TransformName>
+          <TransformName>Normal B</TransformName>
           <Position xsi:nil="true" />
           <Rotation xsi:nil="true" />
           <Scale xsi:nil="true" />
@@ -127,7 +127,7 @@ This spell can light campfires.</Description>
           </EffectConditions>
         </SL_EffectTransform>
         <SL_EffectTransform>
-          <TransformName>Normal</TransformName>
+          <TransformName>Normal B+</TransformName>
           <Position xsi:nil="true" />
           <Rotation xsi:nil="true" />
           <Scale xsi:nil="true" />

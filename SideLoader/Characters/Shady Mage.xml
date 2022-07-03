@@ -3,16 +3,14 @@
   <SaveType>Scene</SaveType>
   <UID>com.llamamage.bloodmage.trainer</UID>
   <Name>Shady Mage</Name>
-
-<InitialDialogue>Error! Could not set up custom dialogue </InitialDialogue>
-
+  <DestroyOnDeath>false</DestroyOnDeath>
   <StartingPose>Normal</StartingPose>
   <Scale>
     <x>1</x>
     <y>1</y>
     <z>1</z>
   </Scale>
-
+  <StartSheathed>true</StartSheathed>
   <SceneToSpawn>Harmattan</SceneToSpawn>
   <SpawnPosition>
     <x>123.075</x>
@@ -32,91 +30,159 @@
     <HeadVariationIndex>5</HeadVariationIndex>
     <SkinIndex>0</SkinIndex>
   </CharacterVisualsData>
-
+  <Weapon_ID xsi:nil="true" />
+  <Shield_ID xsi:nil="true" />
   <Helmet_ID>3000302</Helmet_ID>
   <Chest_ID>3000350</Chest_ID>
   <Boots_ID>3100102</Boots_ID>
-  
+  <Backpack_ID xsi:nil="true" />
+  <Backpack_Items />
+  <Pouch_Items />
+  <LootableOnDeath>false</LootableOnDeath>
+  <DropPouchContents>false</DropPouchContents>
+  <DropWeapons>false</DropWeapons>
+  <Health>100</Health>
+  <HealthRegen>0</HealthRegen>
+  <ImpactResist>0</ImpactResist>
+  <Protection>0</Protection>
+  <Barrier>0</Barrier>
+  <Damage_Resists>
+    <float>0</float>
+    <float>0</float>
+    <float>0</float>
+    <float>0</float>
+    <float>0</float>
+    <float>0</float>
+  </Damage_Resists>
+  <Damage_Bonus>
+    <float>0</float>
+    <float>0</float>
+    <float>0</float>
+    <float>0</float>
+    <float>0</float>
+    <float>0</float>
+  </Damage_Bonus>
+  <Status_Immunity />
+  <AutoTeleportWhenFar>false</AutoTeleportWhenFar>
+  <AutoTeleportDistanceThreshold>25</AutoTeleportDistanceThreshold>
   <SkillTree>
-		<UID> com.llamamage.bloodmage </UID>
-		<Name> Blood Mage</Name>
-	<SigilIconName></SigilIconName>
-		<SkillRows>
-			<SL_SkillRow>
-				<RowIndex>1</RowIndex>
-				<Slots>
-					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-						<ColumnIndex>1</ColumnIndex>
-						<SkillID>-28003</SkillID>
-						<SilverCost>50</SilverCost>
-					</SL_BaseSkillSlot>
-				
-					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-						<ColumnIndex>3</ColumnIndex>
-						<SkillID>-28004</SkillID>
-						<SilverCost>50</SilverCost>
-					</SL_BaseSkillSlot>
-				</Slots>
-			</SL_SkillRow>
-			
-			<SL_SkillRow>
-				<RowIndex>2</RowIndex>
-				<Slots>
-					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-						<ColumnIndex>2</ColumnIndex>
-						<SkillID>-28002</SkillID>
-						<SilverCost>50</SilverCost>
-					</SL_BaseSkillSlot>
-				</Slots>
-			</SL_SkillRow>
-			
-			<SL_SkillRow>
-				<RowIndex>3</RowIndex>
-					<Slots>
-					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-						<ColumnIndex>2</ColumnIndex>
-						<SkillID>-28006</SkillID>
-						<SilverCost>500</SilverCost>
-						<Breakthrough>true</Breakthrough>
-					</SL_BaseSkillSlot>
-				</Slots>
-			</SL_SkillRow>
-			
-			<SL_SkillRow>
-				<RowIndex>4</RowIndex>
-					<Slots>
-					<SL_BaseSkillSlot xsi:type="SL_SkillSlotFork">
-					<Choice1>
-						<ColumnIndex>2</ColumnIndex>
-						<SkillID>-28007</SkillID>
-						<SilverCost>600</SilverCost>
-					</Choice1>
-			
-					<Choice2>
-						<ColumnIndex>2</ColumnIndex>
-						<SkillID>-28008</SkillID>
-						<SilverCost>600</SilverCost>
-					</Choice2>
-					</SL_BaseSkillSlot>
-					</Slots>
-			</SL_SkillRow>
-			
-			<SL_SkillRow>
-				<RowIndex>5</RowIndex>
-					<Slots>
-					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-						<ColumnIndex>1</ColumnIndex>
-						<SkillID>-28001</SkillID>
-						<SilverCost>600</SilverCost>
-					</SL_BaseSkillSlot>
-				
-					<SL_BaseSkillSlot xsi:type="SL_SkillSlot">
-						<ColumnIndex>3</ColumnIndex>
-						<SkillID>-28009</SkillID>
-						<SilverCost>600</SilverCost>
-					</SL_BaseSkillSlot>
-					</Slots>
-			</SL_SkillRow>
-		</SkillRows>
+    <SigilIconName>BloodMageSkillTreeSigil.png</SigilIconName>
+    <Name>Blood Mage</Name>
+    <UID>com.llamamage.bloodmage</UID>
+    <SkillRows>
+      <SL_SkillRow>
+        <RowIndex>1</RowIndex>
+        <Slots>
+          <SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+            <ColumnIndex>1</ColumnIndex>
+            <RequiredSkillSlot>
+              <x>0</x>
+              <y>0</y>
+            </RequiredSkillSlot>
+            <SkillID>-28003</SkillID>
+            <SilverCost>50</SilverCost>
+            <Breakthrough>false</Breakthrough>
+          </SL_BaseSkillSlot>
+          <SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+            <ColumnIndex>3</ColumnIndex>
+            <RequiredSkillSlot>
+              <x>0</x>
+              <y>0</y>
+            </RequiredSkillSlot>
+            <SkillID>-28004</SkillID>
+            <SilverCost>50</SilverCost>
+            <Breakthrough>false</Breakthrough>
+          </SL_BaseSkillSlot>
+        </Slots>
+      </SL_SkillRow>
+      <SL_SkillRow>
+        <RowIndex>2</RowIndex>
+        <Slots>
+          <SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+            <ColumnIndex>2</ColumnIndex>
+            <RequiredSkillSlot>
+              <x>0</x>
+              <y>0</y>
+            </RequiredSkillSlot>
+            <SkillID>-28002</SkillID>
+            <SilverCost>50</SilverCost>
+            <Breakthrough>false</Breakthrough>
+          </SL_BaseSkillSlot>
+        </Slots>
+      </SL_SkillRow>
+      <SL_SkillRow>
+        <RowIndex>3</RowIndex>
+        <Slots>
+          <SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+            <ColumnIndex>2</ColumnIndex>
+            <RequiredSkillSlot>
+              <x>0</x>
+              <y>0</y>
+            </RequiredSkillSlot>
+            <SkillID>-28006</SkillID>
+            <SilverCost>500</SilverCost>
+            <Breakthrough>true</Breakthrough>
+          </SL_BaseSkillSlot>
+        </Slots>
+      </SL_SkillRow>
+      <SL_SkillRow>
+        <RowIndex>4</RowIndex>
+        <Slots>
+          <SL_BaseSkillSlot xsi:type="SL_SkillSlotFork">
+            <ColumnIndex>2</ColumnIndex>
+            <RequiredSkillSlot>
+              <x>0</x>
+              <y>0</y>
+            </RequiredSkillSlot>
+            <Choice1>
+              <ColumnIndex>2</ColumnIndex>
+              <RequiredSkillSlot>
+                <x>0</x>
+                <y>0</y>
+              </RequiredSkillSlot>
+              <SkillID>-28007</SkillID>
+              <SilverCost>600</SilverCost>
+              <Breakthrough>false</Breakthrough>
+            </Choice1>
+            <Choice2>
+              <ColumnIndex>2</ColumnIndex>
+              <RequiredSkillSlot>
+                <x>0</x>
+                <y>0</y>
+              </RequiredSkillSlot>
+              <SkillID>-28008</SkillID>
+              <SilverCost>600</SilverCost>
+              <Breakthrough>false</Breakthrough>
+            </Choice2>
+          </SL_BaseSkillSlot>
+        </Slots>
+      </SL_SkillRow>
+      <SL_SkillRow>
+        <RowIndex>5</RowIndex>
+        <Slots>
+          <SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+            <ColumnIndex>1</ColumnIndex>
+            <RequiredSkillSlot>
+              <x>0</x>
+              <y>0</y>
+            </RequiredSkillSlot>
+            <SkillID>-28001</SkillID>
+            <SilverCost>600</SilverCost>
+            <Breakthrough>false</Breakthrough>
+          </SL_BaseSkillSlot>
+          <SL_BaseSkillSlot xsi:type="SL_SkillSlot">
+            <ColumnIndex>3</ColumnIndex>
+            <RequiredSkillSlot>
+              <x>0</x>
+              <y>0</y>
+            </RequiredSkillSlot>
+            <SkillID>-28009</SkillID>
+            <SilverCost>600</SilverCost>
+            <Breakthrough>false</Breakthrough>
+          </SL_BaseSkillSlot>
+        </Slots>
+      </SL_SkillRow>
+    </SkillRows>
   </SkillTree>
+  <InitialDialogue>Hey, you! Come here! How about I teach you how to draw on the power within?</InitialDialogue>
 </SL_CharacterTrainer>
