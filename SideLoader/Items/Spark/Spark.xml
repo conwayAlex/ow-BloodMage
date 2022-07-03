@@ -60,7 +60,7 @@ This spell can light campfires.</Description>
               <NoAim>false</NoAim>
               <TargetType>Enemies</TargetType>
               <TransformName>ShooterTransform</TransformName>
-              <BaseBlast>WendigoSoulSyphon</BaseBlast>
+              <BaseBlast>ScarletEmissaryBlast</BaseBlast>
               <Radius>5</Radius>
               <RefreshTime>0.1</RefreshTime>
               <BlastLifespan>0</BlastLifespan>
@@ -155,7 +155,7 @@ This spell can light campfires.</Description>
               <NoAim>false</NoAim>
               <TargetType>Enemies</TargetType>
               <TransformName>ShooterTransform</TransformName>
-              <BaseBlast>WendigoSoulSyphon</BaseBlast>
+              <BaseBlast>ScarletEmissaryBlast</BaseBlast>
               <Radius>1</Radius>
               <RefreshTime>0.1</RefreshTime>
               <BlastLifespan>0</BlastLifespan>

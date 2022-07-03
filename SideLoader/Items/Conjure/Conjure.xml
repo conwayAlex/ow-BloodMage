@@ -50,7 +50,7 @@
               <NoAim>false</NoAim>
               <TargetType>Enemies</TargetType>
               <TransformName>ShooterTransform</TransformName>
-              <BaseBlast>ForceRaiseLightning</BaseBlast>
+              <BaseBlast>ScarletEmissaryLifeSteal</BaseBlast>
               <Radius>2.8</Radius>
               <RefreshTime>0.1</RefreshTime>
               <BlastLifespan>0</BlastLifespan>
@@ -164,7 +164,7 @@
               <NoAim>false</NoAim>
               <TargetType>Enemies</TargetType>
               <TransformName>ShooterTransform</TransformName>
-              <BaseBlast>ForceRaiseLightning</BaseBlast>
+              <BaseBlast>ScarletEmissaryLifeSteal</BaseBlast>
               <Radius>2.8</Radius>
               <RefreshTime>0.1</RefreshTime>
               <BlastLifespan>0</BlastLifespan>
@@ -212,7 +212,7 @@
                       <SyncType>OwnerSync</SyncType>
                       <OverrideCategory>None</OverrideCategory>
                       <StatusEffect>Hemorrhage</StatusEffect>
-                      <Buildup>70</Buildup>
+                      <Buildup>50</Buildup>
                       <BuildUpMultiplier>1</BuildUpMultiplier>
                       <BypassCounter>false</BypassCounter>
                       <AffectController>false</AffectController>

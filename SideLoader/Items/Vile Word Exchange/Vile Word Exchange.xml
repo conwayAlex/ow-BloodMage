@@ -71,7 +71,7 @@
           <YMagnitudeAffect>0</YMagnitudeAffect>
           <YMagnitudeForce>0</YMagnitudeForce>
           <DefenseLength>3</DefenseLength>
-          <DefenseRange>0</DefenseRange>
+          <DefenseRange>3</DefenseRange>
           <CameraAddYDirection>0</CameraAddYDirection>
           <ImpactSoundMaterial>Flesh</ImpactSoundMaterial>
           <LightIntensityFade>
@@ -215,7 +215,6 @@
           <TargetType>Enemies</TargetType>
           <TransformName>ShooterTransform</TransformName>
           <BaseProjectile>BloodMageHeal</BaseProjectile>
-          <ProjectileShots />
           <InstantiatedAmount>1</InstantiatedAmount>
           <Lifespan>3</Lifespan>
           <LateShootTime>0.1</LateShootTime>
