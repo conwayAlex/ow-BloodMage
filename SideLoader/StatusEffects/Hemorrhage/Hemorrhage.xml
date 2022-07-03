@@ -20,7 +20,14 @@
   <IsMalusEffect>true</IsMalusEffect>
   <DelayedDestroyTime>0</DelayedDestroyTime>
   <ActionOnHit>None</ActionOnHit>
-  <FamilyMode>Reference</FamilyMode>
+  <FamilyMode>Bind</FamilyMode>
+  <BindFamily>
+    <UID>HemorrhageFamily</UID>
+    <Name>HemorrhageFamily</Name>
+    <StackBehaviour xsi:nil="true" />
+    <MaxStackCount>-1</MaxStackCount>
+    <LengthType>Short</LengthType>
+  </BindFamily>
   <ReferenceFamilyUID>fKo9pwhyQUyLb3gnwc6h5g</ReferenceFamilyUID>
   <PlayFXOnActivation>true</PlayFXOnActivation>
   <FXOffset>
@@ -48,6 +55,20 @@
           <IsModifier>true</IsModifier>
           <AffectQuantityAI>-5</AffectQuantityAI>
           <InformSourceCharacter>false</InformSourceCharacter>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_RemoveStatusEffect">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <CleanseType>StatusSpecific</CleanseType>
+          <SelectorValue>Bleeding</SelectorValue>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_RemoveStatusEffect">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <CleanseType>StatusSpecific</CleanseType>
+          <SelectorValue>Bleeding +</SelectorValue>
         </SL_Effect>
       </Effects>
       <EffectConditions />

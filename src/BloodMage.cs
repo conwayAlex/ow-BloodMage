@@ -18,9 +18,7 @@ namespace BloodMage
 
         public static BloodMage Instance;
 
-        public static int HypovolemiaID = -28001;
-
-        public static int VilePact = -28006;
+        public static int Hypovolemia = -28001;
         public static int LeylineAbandonment = -28007;
         public static int LeylineEntanglement = -28008;
 
@@ -79,7 +77,7 @@ namespace BloodMage
         {
             static void Postfix(CharacterStats __instance, ref float __result)
             {
-                if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.HypovolemiaID))
+                if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.Hypovolemia))
                 {
                     __result *= .5f;
                 }
@@ -90,24 +88,23 @@ namespace BloodMage
         //Leyline Abandonment and Entanglement Patch
         //Redirect consumption of skills to appropriate channels
         [HarmonyPatch(typeof(Skill), nameof(Skill.ConsumeResources))]
-        public class LeylinePassivesAffectManaPatch
+        public class LeylinePassivesConsumptionPatch
         {
             static bool Prefix(Skill __instance)
             {
-                if(__instance.ManaCost != 0f)
+                if(__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
                 {
-                    if (__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
-                    {
-                        __instance.m_ownerCharacter.Stats.ReceiveDamage(__instance.ManaCost);
-                        return false;
-                    }
-                    else if (__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineEntanglement))
-                    {
-                        float derived = __instance.ManaCost / 2f;
-                        __instance.m_ownerCharacter.Stats.UseMana(null, __instance.m_ownerCharacter.Stats.GetFinalManaConsumption(null, derived));
-                        __instance.m_ownerCharacter.Stats.ReceiveDamage(derived);
-                        return false;
-                    }
+                    __instance.HealthCost = __instance.ManaCost;
+                    __instance.ManaCost = 0;
+                    return true;
+                }
+                else if(__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineEntanglement))
+                {
+                    float derivedMana = __instance.HealthCost / 2f;
+                    __instance.ManaCost += derivedMana;
+                    float derivedHealth = __instance.ManaCost / 2f;
+                    __instance.HealthCost += derivedHealth;
+                    return true;
                 }
                 return true;
             }
@@ -197,6 +194,7 @@ namespace BloodMage
 
         //Leyline Abandonment Patch
         //Undoes AddItem patch
+        //Remove passive patch here?
 
 
         //Leyline Abandonment Patch
@@ -225,7 +223,7 @@ namespace BloodMage
         }
 
         //Leyline Abandonment Patch
-        //When more max mana gained, hp and stamina calculated and  burnt mana maxed again.
+        //When more max mana gained, hp and stamina calculated and burnt mana maxed again.
         [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.AddStatStack))]
         public class LeylineAbandonmentAddStackPatch
         {
@@ -269,6 +267,5 @@ namespace BloodMage
                 }
             }
         }
-
     }
 }
