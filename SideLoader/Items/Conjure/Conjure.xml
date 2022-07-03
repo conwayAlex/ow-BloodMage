@@ -146,7 +146,7 @@
               <SyncType>OwnerSync</SyncType>
               <OverrideCategory>None</OverrideCategory>
               <StatusEffect>Hemorrhage</StatusEffect>
-              <Buildup>60</Buildup>
+              <Buildup>40</Buildup>
               <BuildUpMultiplier>1</BuildUpMultiplier>
               <BypassCounter>false</BypassCounter>
               <AffectController>false</AffectController>

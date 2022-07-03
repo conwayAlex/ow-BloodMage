@@ -74,7 +74,7 @@ This spell can light campfires.</Description>
               <NoTargetForwardMultiplier>5</NoTargetForwardMultiplier>
               <ParentToShootTransform>false</ParentToShootTransform>
               <UseTargetCharacterPositionType>false</UseTargetCharacterPositionType>
-              <ImpactSoundMaterial>Goo</ImpactSoundMaterial>
+              <ImpactSoundMaterial>Fire</ImpactSoundMaterial>
               <DontPlayHitSound>false</DontPlayHitSound>
               <FXIsWorld>false</FXIsWorld>
               <PlaySounOnRefresh>false</PlaySounOnRefresh>
@@ -94,11 +94,22 @@ This spell can light campfires.</Description>
                       <OverrideCategory>None</OverrideCategory>
                       <Damage>
                         <SL_Damage>
-                          <Damage>5</Damage>
+                          <Damage>10</Damage>
                           <Type>Fire</Type>
                         </SL_Damage>
+                      </Damage>
+                      <Damages_AI />
+                      <Knockback>0</Knockback>
+                      <HitInventory>false</HitInventory>
+                      <IgnoreHalfResistances>false</IgnoreHalfResistances>
+                    </SL_Effect>
+                    <SL_Effect xsi:type="SL_PunctualDamage">
+                      <Delay>0</Delay>
+                      <SyncType>OwnerSync</SyncType>
+                      <OverrideCategory>None</OverrideCategory>
+                      <Damage>
                         <SL_Damage>
-                          <Damage>5</Damage>
+                          <Damage>10</Damage>
                           <Type>Decay</Type>
                         </SL_Damage>
                       </Damage>
@@ -189,11 +200,22 @@ This spell can light campfires.</Description>
                       <OverrideCategory>None</OverrideCategory>
                       <Damage>
                         <SL_Damage>
-                          <Damage>10</Damage>
+                          <Damage>15</Damage>
                           <Type>Decay</Type>
                         </SL_Damage>
+                      </Damage>
+                      <Damages_AI />
+                      <Knockback>0</Knockback>
+                      <HitInventory>false</HitInventory>
+                      <IgnoreHalfResistances>false</IgnoreHalfResistances>
+                    </SL_Effect>
+                    <SL_Effect xsi:type="SL_PunctualDamage">
+                      <Delay>0</Delay>
+                      <SyncType>OwnerSync</SyncType>
+                      <OverrideCategory>None</OverrideCategory>
+                      <Damage>
                         <SL_Damage>
-                          <Damage>10</Damage>
+                          <Damage>15</Damage>
                           <Type>Fire</Type>
                         </SL_Damage>
                       </Damage>
