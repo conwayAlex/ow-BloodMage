@@ -22,14 +22,14 @@
   <ActionOnHit>None</ActionOnHit>
   <FamilyMode>Reference</FamilyMode>
   <ReferenceFamilyUID>fKo9pwhyQUyLb3gnwc6h5g</ReferenceFamilyUID>
-  <PlayFXOnActivation>true</PlayFXOnActivation>
+  <PlayFXOnActivation>false</PlayFXOnActivation>
   <FXOffset>
     <x>0</x>
     <y>0</y>
     <z>0</z>
   </FXOffset>
-  <VFXInstantiationType>VFX</VFXInstantiationType>
-  <VFXPrefab>HexBleedingVFX</VFXPrefab>
+  <VFXInstantiationType>None</VFXInstantiationType>
+  <VFXPrefab xsi:nil="true" />
   <SpecialSFX>NONE</SpecialSFX>
   <PlaySpecialFXOnStop>false</PlaySpecialFXOnStop>
   <EffectBehaviour>Destroy</EffectBehaviour>
