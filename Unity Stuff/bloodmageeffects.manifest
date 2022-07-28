@@ -1,0 +1,42 @@
+ManifestFileVersion: 0
+CRC: 4194331008
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0a53a5a0922096f137ac60c6503134b6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 56eaf4554d4ba49c5e898b9d45072e50
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Word Spells/WordSpellHarm.prefab
+- Assets/Word Spells/WordSpellExchange.prefab
+- Assets/Blood Mist/BloodMistEffect.prefab
+- Assets/Word Spells/WordSpellManipulate.prefab
+Dependencies: []

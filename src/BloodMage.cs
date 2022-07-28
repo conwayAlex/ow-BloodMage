@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using HarmonyLib;
 using UnityEngine;
+using SideLoader;
 
 namespace BloodMage
 {

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <SL_Skill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Target_ItemID>-28007</Target_ItemID>
+  <Target_ItemID>8205170</Target_ItemID>
   <New_ItemID>-28008</New_ItemID>
   <Name>Leyline Entanglement</Name>
   <Description>Half of mana costs are now taken from health instead of mana.</Description>

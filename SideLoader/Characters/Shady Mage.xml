@@ -66,9 +66,9 @@
   <AutoTeleportWhenFar>false</AutoTeleportWhenFar>
   <AutoTeleportDistanceThreshold>25</AutoTeleportDistanceThreshold>
   <SkillTree>
-    <SigilIconName>BloodMageSkillTreeSigil.png</SigilIconName>
+    <SigilIconName>BloodMageSkillTreeSigil</SigilIconName>
     <Name>Blood Mage</Name>
-    <UID>com.llamamage.bloodmage</UID>
+    <UID>com.llamamage.bloodmage.trainer.tree</UID>
     <SkillRows>
       <SL_SkillRow>
         <RowIndex>1</RowIndex>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <SL_AttackSkill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Target_ItemID>-28002</Target_ItemID>
+  <Target_ItemID>8100220</Target_ItemID>
   <New_ItemID>-28004</New_ItemID>
   <Name>Vile Word: Exchange</Name>
   <Description>Does nothing unless bleeding.</Description>
@@ -12,7 +12,7 @@
   <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
   <RepairedInRest>true</RepairedInRest>
   <BehaviorOnNoDurability>NotSet</BehaviorOnNoDurability>
-  <CastType>WriteRune</CastType>
+  <CastType>Jinx</CastType>
   <CastModifier>Immobilized</CastModifier>
   <CastLocomotionEnabled>false</CastLocomotionEnabled>
   <MobileCastMovementMult>-1</MobileCastMovementMult>
@@ -29,6 +29,28 @@
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
       <Effects>
+        <SL_Effect xsi:type="SL_PlayAssetBundleVFX">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <SLPackName>llama-mage-Blood_Mage</SLPackName>
+          <AssetBundleName>bloodmageeffects</AssetBundleName>
+          <PrefabName>WordSpellExchange</PrefabName>
+          <PositionOffset>
+            <x>0</x>
+            <y>1.4</y>
+            <z>0.4</z>
+          </PositionOffset>
+          <RotationOffset>
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+          </RotationOffset>
+          <ParentToAffected>false</ParentToAffected>
+          <PositionOffsetAsRelativeDirection>true</PositionOffsetAsRelativeDirection>
+          <RotateToPlayerDirection>true</RotateToPlayerDirection>
+          <LifeTime>1</LifeTime>
+        </SL_Effect>
         <SL_Effect xsi:type="SL_ShootProjectile">
           <Delay>0</Delay>
           <SyncType>OwnerSync</SyncType>
@@ -42,7 +64,7 @@
           <NoAim>false</NoAim>
           <TargetType>Enemies</TargetType>
           <TransformName>ShooterTransform</TransformName>
-          <BaseProjectile>BloodMageHeal</BaseProjectile>
+          <BaseProjectile>BulletBlood</BaseProjectile>
           <InstantiatedAmount>1</InstantiatedAmount>
           <Lifespan>3</Lifespan>
           <LateShootTime>0.1</LateShootTime>
@@ -57,7 +79,7 @@
           <AutoTarget>false</AutoTarget>
           <AutoTargetMaxAngle>360</AutoTargetMaxAngle>
           <AutoTargetRange>5</AutoTargetRange>
-          <ProjectileForce>300</ProjectileForce>
+          <ProjectileForce>80</ProjectileForce>
           <AddDirection>
             <x>0</x>
             <y>0</y>
@@ -201,6 +223,28 @@
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
       <Effects>
+        <SL_Effect xsi:type="SL_PlayAssetBundleVFX">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <SLPackName>llama-mage-Blood_Mage</SLPackName>
+          <AssetBundleName>bloodmageeffects</AssetBundleName>
+          <PrefabName>WordSpellExchange</PrefabName>
+          <PositionOffset>
+            <x>0</x>
+            <y>1.4</y>
+            <z>0.4</z>
+          </PositionOffset>
+          <RotationOffset>
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+          </RotationOffset>
+          <ParentToAffected>false</ParentToAffected>
+          <PositionOffsetAsRelativeDirection>true</PositionOffsetAsRelativeDirection>
+          <RotateToPlayerDirection>true</RotateToPlayerDirection>
+          <LifeTime>1</LifeTime>
+        </SL_Effect>
         <SL_Effect xsi:type="SL_ShootProjectile">
           <Delay>0</Delay>
           <SyncType>OwnerSync</SyncType>
@@ -214,7 +258,7 @@
           <NoAim>false</NoAim>
           <TargetType>Enemies</TargetType>
           <TransformName>ShooterTransform</TransformName>
-          <BaseProjectile>BloodMageHeal</BaseProjectile>
+          <BaseProjectile>BulletBlood</BaseProjectile>
           <InstantiatedAmount>1</InstantiatedAmount>
           <Lifespan>3</Lifespan>
           <LateShootTime>0.1</LateShootTime>
@@ -229,7 +273,7 @@
           <AutoTarget>false</AutoTarget>
           <AutoTargetMaxAngle>0</AutoTargetMaxAngle>
           <AutoTargetRange>0</AutoTargetRange>
-          <ProjectileForce>300</ProjectileForce>
+          <ProjectileForce>80</ProjectileForce>
           <AddDirection>
             <x>0</x>
             <y>0</y>
@@ -294,6 +338,28 @@
                   <AffectQuantity>20</AffectQuantity>
                   <Requires_AffectedChar>true</Requires_AffectedChar>
                   <IsModifier>false</IsModifier>
+                </SL_Effect>
+                <SL_Effect xsi:type="SL_PlayAssetBundleVFX">
+                  <Delay>0</Delay>
+                  <SyncType>OwnerSync</SyncType>
+                  <OverrideCategory>None</OverrideCategory>
+                  <SLPackName>llama-mage-Blood_Mage</SLPackName>
+                  <AssetBundleName>bloodmageeffects</AssetBundleName>
+                  <PrefabName>WordSpellExchangeTest</PrefabName>
+                  <PositionOffset>
+                    <x>0</x>
+                    <y>1.25</y>
+                    <z>1.25</z>
+                  </PositionOffset>
+                  <RotationOffset>
+                    <x>0</x>
+                    <y>0</y>
+                    <z>0</z>
+                  </RotationOffset>
+                  <ParentToAffected>false</ParentToAffected>
+                  <PositionOffsetAsRelativeDirection>true</PositionOffsetAsRelativeDirection>
+                  <RotateToPlayerDirection>true</RotateToPlayerDirection>
+                  <LifeTime>2</LifeTime>
                 </SL_Effect>
               </Effects>
               <EffectConditions>
@@ -374,7 +440,7 @@
   <DurabilityCostPercent>0</DurabilityCostPercent>
   <VFXOnStart>true</VFXOnStart>
   <StopStartVFXOnEnd>false</StopStartVFXOnEnd>
-  <StartVFX>VFXRuneShim</StartVFX>
+  <StartVFX>BloodLeechTriggerVFX</StartVFX>
   <RequiredItems />
   <HealthCost>5</HealthCost>
   <RequiredPlayerType>Normal</RequiredPlayerType>

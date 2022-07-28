@@ -60,8 +60,8 @@ This spell can light campfires.</Description>
               <NoAim>false</NoAim>
               <TargetType>Enemies</TargetType>
               <TransformName>ShooterTransform</TransformName>
-              <BaseBlast>ScarletEmissaryBlast</BaseBlast>
-              <Radius>5</Radius>
+              <BaseBlast>ForcePush</BaseBlast>
+              <Radius>4</Radius>
               <RefreshTime>0.1</RefreshTime>
               <BlastLifespan>0</BlastLifespan>
               <InstantiatedAmount>1</InstantiatedAmount>
@@ -78,12 +78,12 @@ This spell can light campfires.</Description>
               <DontPlayHitSound>false</DontPlayHitSound>
               <FXIsWorld>false</FXIsWorld>
               <PlaySounOnRefresh>false</PlaySounOnRefresh>
-              <DelayFirstShoot>0</DelayFirstShoot>
+              <DelayFirstShoot>-1</DelayFirstShoot>
               <PlayFXOnRefresh>false</PlayFXOnRefresh>
               <EffectBehaviour>Destroy</EffectBehaviour>
               <BlastEffects>
                 <SL_EffectTransform>
-                  <TransformName>HitEffects</TransformName>
+                  <TransformName>Effects</TransformName>
                   <Position xsi:nil="true" />
                   <Rotation xsi:nil="true" />
                   <Scale xsi:nil="true" />
@@ -94,22 +94,11 @@ This spell can light campfires.</Description>
                       <OverrideCategory>None</OverrideCategory>
                       <Damage>
                         <SL_Damage>
-                          <Damage>10</Damage>
+                          <Damage>40</Damage>
                           <Type>Fire</Type>
                         </SL_Damage>
-                      </Damage>
-                      <Damages_AI />
-                      <Knockback>0</Knockback>
-                      <HitInventory>false</HitInventory>
-                      <IgnoreHalfResistances>false</IgnoreHalfResistances>
-                    </SL_Effect>
-                    <SL_Effect xsi:type="SL_PunctualDamage">
-                      <Delay>0</Delay>
-                      <SyncType>OwnerSync</SyncType>
-                      <OverrideCategory>None</OverrideCategory>
-                      <Damage>
                         <SL_Damage>
-                          <Damage>10</Damage>
+                          <Damage>40</Damage>
                           <Type>Decay</Type>
                         </SL_Damage>
                       </Damage>
@@ -121,6 +110,28 @@ This spell can light campfires.</Description>
                   </Effects>
                 </SL_EffectTransform>
               </BlastEffects>
+            </SL_Effect>
+            <SL_Effect xsi:type="SL_PlayAssetBundleVFX">
+              <Delay>0</Delay>
+              <SyncType>OwnerSync</SyncType>
+              <OverrideCategory>None</OverrideCategory>
+              <SLPackName>llama-mage-Blood_Mage</SLPackName>
+              <AssetBundleName>bloodmageeffects</AssetBundleName>
+              <PrefabName>BloodMistEffect</PrefabName>
+              <PositionOffset>
+                <x>0</x>
+                <y>1.25</y>
+                <z>1.25</z>
+              </PositionOffset>
+              <RotationOffset>
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+              </RotationOffset>
+              <ParentToAffected>false</ParentToAffected>
+              <PositionOffsetAsRelativeDirection>true</PositionOffsetAsRelativeDirection>
+              <RotateToPlayerDirection>false</RotateToPlayerDirection>
+              <LifeTime>2</LifeTime>
             </SL_Effect>
           </Effects>
           <EffectConditions>
@@ -166,8 +177,8 @@ This spell can light campfires.</Description>
               <NoAim>false</NoAim>
               <TargetType>Enemies</TargetType>
               <TransformName>ShooterTransform</TransformName>
-              <BaseBlast>ScarletEmissaryBlast</BaseBlast>
-              <Radius>1</Radius>
+              <BaseBlast>Spark</BaseBlast>
+              <Radius>4</Radius>
               <RefreshTime>0.1</RefreshTime>
               <BlastLifespan>0</BlastLifespan>
               <InstantiatedAmount>1</InstantiatedAmount>
@@ -184,12 +195,12 @@ This spell can light campfires.</Description>
               <DontPlayHitSound>false</DontPlayHitSound>
               <FXIsWorld>false</FXIsWorld>
               <PlaySounOnRefresh>false</PlaySounOnRefresh>
-              <DelayFirstShoot>0</DelayFirstShoot>
+              <DelayFirstShoot>-1</DelayFirstShoot>
               <PlayFXOnRefresh>false</PlayFXOnRefresh>
               <EffectBehaviour>Destroy</EffectBehaviour>
               <BlastEffects>
                 <SL_EffectTransform>
-                  <TransformName>HitEffects</TransformName>
+                  <TransformName>Effects</TransformName>
                   <Position xsi:nil="true" />
                   <Rotation xsi:nil="true" />
                   <Scale xsi:nil="true" />
@@ -200,22 +211,11 @@ This spell can light campfires.</Description>
                       <OverrideCategory>None</OverrideCategory>
                       <Damage>
                         <SL_Damage>
-                          <Damage>15</Damage>
+                          <Damage>60</Damage>
                           <Type>Decay</Type>
                         </SL_Damage>
-                      </Damage>
-                      <Damages_AI />
-                      <Knockback>0</Knockback>
-                      <HitInventory>false</HitInventory>
-                      <IgnoreHalfResistances>false</IgnoreHalfResistances>
-                    </SL_Effect>
-                    <SL_Effect xsi:type="SL_PunctualDamage">
-                      <Delay>0</Delay>
-                      <SyncType>OwnerSync</SyncType>
-                      <OverrideCategory>None</OverrideCategory>
-                      <Damage>
                         <SL_Damage>
-                          <Damage>15</Damage>
+                          <Damage>60</Damage>
                           <Type>Fire</Type>
                         </SL_Damage>
                       </Damage>
@@ -227,6 +227,28 @@ This spell can light campfires.</Description>
                   </Effects>
                 </SL_EffectTransform>
               </BlastEffects>
+            </SL_Effect>
+            <SL_Effect xsi:type="SL_PlayAssetBundleVFX">
+              <Delay>0</Delay>
+              <SyncType>OwnerSync</SyncType>
+              <OverrideCategory>None</OverrideCategory>
+              <SLPackName>llama-mage-Blood_Mage</SLPackName>
+              <AssetBundleName>bloodmageeffects</AssetBundleName>
+              <PrefabName>BloodMistEffect</PrefabName>
+              <PositionOffset>
+                <x>0</x>
+                <y>1.25</y>
+                <z>1.25</z>
+              </PositionOffset>
+              <RotationOffset>
+                <x>0</x>
+                <y>0</y>
+                <z>0</z>
+              </RotationOffset>
+              <ParentToAffected>false</ParentToAffected>
+              <PositionOffsetAsRelativeDirection>true</PositionOffsetAsRelativeDirection>
+              <RotateToPlayerDirection>false</RotateToPlayerDirection>
+              <LifeTime>2</LifeTime>
             </SL_Effect>
           </Effects>
           <EffectConditions>

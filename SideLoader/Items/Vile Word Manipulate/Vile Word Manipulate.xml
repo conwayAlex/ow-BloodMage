@@ -12,7 +12,7 @@
   <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
   <RepairedInRest>true</RepairedInRest>
   <BehaviorOnNoDurability>NotSet</BehaviorOnNoDurability>
-  <CastType>WriteRune</CastType>
+  <CastType>Rupture</CastType>
   <CastModifier>Immobilized</CastModifier>
   <CastLocomotionEnabled>false</CastLocomotionEnabled>
   <MobileCastMovementMult>-1</MobileCastMovementMult>
@@ -29,6 +29,28 @@
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
       <Effects>
+        <SL_Effect xsi:type="SL_PlayAssetBundleVFX">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <SLPackName>llama-mage-Blood_Mage</SLPackName>
+          <AssetBundleName>bloodmageeffects</AssetBundleName>
+          <PrefabName>WordSpellManipulate</PrefabName>
+          <PositionOffset>
+            <x>0</x>
+            <y>1.4</y>
+            <z>0.4</z>
+          </PositionOffset>
+          <RotationOffset>
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+          </RotationOffset>
+          <ParentToAffected>false</ParentToAffected>
+          <PositionOffsetAsRelativeDirection>true</PositionOffsetAsRelativeDirection>
+          <RotateToPlayerDirection>true</RotateToPlayerDirection>
+          <LifeTime>1</LifeTime>
+        </SL_Effect>
         <SL_Effect xsi:type="SL_AffectHealth">
           <Delay>0</Delay>
           <SyncType>OwnerSync</SyncType>
@@ -74,6 +96,28 @@
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
       <Effects>
+        <SL_Effect xsi:type="SL_PlayAssetBundleVFX">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <SLPackName>llama-mage-Blood_Mage</SLPackName>
+          <AssetBundleName>bloodmageeffects</AssetBundleName>
+          <PrefabName>WordSpellManipulate</PrefabName>
+          <PositionOffset>
+            <x>0</x>
+            <y>1.4</y>
+            <z>0.4</z>
+          </PositionOffset>
+          <RotationOffset>
+            <x>0</x>
+            <y>0</y>
+            <z>0</z>
+          </RotationOffset>
+          <ParentToAffected>false</ParentToAffected>
+          <PositionOffsetAsRelativeDirection>true</PositionOffsetAsRelativeDirection>
+          <RotateToPlayerDirection>true</RotateToPlayerDirection>
+          <LifeTime>1</LifeTime>
+        </SL_Effect>
         <SL_Effect xsi:type="SL_AffectHealth">
           <Delay>0</Delay>
           <SyncType>OwnerSync</SyncType>
@@ -121,7 +165,7 @@
   <DurabilityCostPercent>0</DurabilityCostPercent>
   <VFXOnStart>true</VFXOnStart>
   <StopStartVFXOnEnd>false</StopStartVFXOnEnd>
-  <StartVFX>VFXRuneShim</StartVFX>
+  <StartVFX>BloodLeechTriggerVFX</StartVFX>
   <RequiredItems />
   <HealthCost>5</HealthCost>
   <RequiredPlayerType>Normal</RequiredPlayerType>
