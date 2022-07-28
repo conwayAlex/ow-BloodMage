@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using UnityEngine;
 using SideLoader;
+using NodeCanvas;
 
 namespace BloodMage
 {
@@ -66,6 +67,17 @@ namespace BloodMage
             }
 
             return default(Tag);
+        }
+
+        public static class SlimShady
+        {
+            public static void Init()
+            {
+                SLPack slpack = SL.GetSLPack("llama-mage_BloodMage");
+
+            }
+
+            
         }
 
         
