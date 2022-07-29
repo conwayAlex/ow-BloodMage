@@ -89,13 +89,9 @@ namespace BloodMage
             {
                 Character instigator = bb.GetVariable<Character>("gInstigator").GetValue();
 
-                if(!instigator.Inventory.SkillKnowledge.IsItemLearned(BloodMage.HarnessBlood))
+                if(!(instigator.Inventory.SkillKnowledge.IsItemLearned(BloodMage.HarnessBlood)))
                 {
                     instigator.Inventory.ReceiveSkillReward(HarnessBlood);
-                }
-                else
-                {
-                    return Status.Success;
                 }
 
 
@@ -129,7 +125,7 @@ namespace BloodMage
                 DialogueTreeController componentInChildren3 = trainer.GetComponentInChildren<DialogueTreeController>();
                 Graph graph = componentInChildren3.graph;
 
-
+                //set up actor stuff
                 List<DialogueTree.ActorParameter> actorParameters = (graph as DialogueTree)._actorParameters;
                 actorParameters[0].actor = componentInChildren;
                 actorParameters[0].name = componentInChildren.name;
@@ -161,7 +157,7 @@ namespace BloodMage
                 (actionNode.action as TrainDialogueAction).Trainer = new BBParameter<Trainer>(componentInChildren2);
                 //Learn skill
                 LearnHarnessBlood learnHarnessBlood = new LearnHarnessBlood();
-                learnHarnessBlood.
+                
 
                 //Organize dialogue
                 //Reset graph
