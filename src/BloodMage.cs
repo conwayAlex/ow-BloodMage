@@ -6,7 +6,12 @@ using System.Collections.Generic;
 using HarmonyLib;
 using UnityEngine;
 using SideLoader;
-using NodeCanvas;
+using NodeCanvas.DialogueTrees;
+using NodeCanvas.Framework;
+using NodeCanvas.Tasks.Actions;
+
+//using Object = UnityEngine.Object; //?
+
 
 namespace BloodMage
 {
@@ -20,6 +25,7 @@ namespace BloodMage
 
         public static BloodMage Instance;
 
+        public static int HarnessBlood = -28000;
         public static int Hypovolemia = -28001;
         public static int LeylineAbandonment = -28007;
         public static int LeylineEntanglement = -28008;
@@ -40,6 +46,8 @@ namespace BloodMage
 
             // Any config settings you define should be set up like this:
             //ExampleConfig = Config.Bind("ExampleCategory", "ExampleSetting", false, "This is an example setting.");
+
+            SL.OnPacksLoaded += this.SL_OnPacksLoaded;
 
             var harmony = new Harmony(GUID);
             harmony.PatchAll();
@@ -68,16 +76,115 @@ namespace BloodMage
 
             return default(Tag);
         }
+        
+        private void SL_OnPacksLoaded()
+        {
+            SlimShady.Init();
+        }
 
+
+        public class LearnHarnessBlood : ActionNode
+        {
+            public override Status OnExecute(Component agent, IBlackboard bb)
+            {
+                Character instigator = bb.GetVariable<Character>("gInstigator").GetValue();
+
+                if(!instigator.Inventory.SkillKnowledge.IsItemLearned(BloodMage.HarnessBlood))
+                {
+                    instigator.Inventory.ReceiveSkillReward(HarnessBlood);
+                }
+                else
+                {
+                    return Status.Success;
+                }
+
+
+                return Status.Success;
+                //return base.OnExecute(agent, bb);
+            }
+        }
         public static class SlimShady
         {
             public static void Init()
             {
-                SLPack slpack = SL.GetSLPack("llama-mage_BloodMage");
-
+                SLPack slpack = SL.GetSLPack("llama-mage-Blood_Mage");
+                SlimShady.trainerTemplate = slpack.CharacterTemplates["com.llamamage.bloodmage.trainer"];
+                SlimShady.trainerTemplate.OnSpawn += LocalTrainerSetup;
             }
 
-            
+            public static void LocalTrainerSetup(Character trainer, string _)
+            {
+                DestroyImmediate(trainer.GetComponent<CharacterStats>());
+                DestroyImmediate(trainer.GetComponent<StartingEquipment>());
+
+                //Create Actor
+                DialogueActor componentInChildren = trainer.GetComponentInChildren<DialogueActor>();
+                componentInChildren.SetName(SlimShady.trainerTemplate.Name);
+
+                //Creater trainer
+                Trainer componentInChildren2 = trainer.GetComponentInChildren<Trainer>();
+                componentInChildren2.m_skillTreeUID = new UID("com.llamamage.bloodmage.trainer.tree");
+
+                //Create dialogue tree
+                DialogueTreeController componentInChildren3 = trainer.GetComponentInChildren<DialogueTreeController>();
+                Graph graph = componentInChildren3.graph;
+
+
+                List<DialogueTree.ActorParameter> actorParameters = (graph as DialogueTree)._actorParameters;
+                actorParameters[0].actor = componentInChildren;
+                actorParameters[0].name = componentInChildren.name;
+
+                //Opening line
+                StatementNodeExt statementNodeExt = graph.AddNode<StatementNodeExt>();
+                statementNodeExt.statement = new Statement("Hey, you! Come here! How about I teach you how to draw on the power within?");
+                statementNodeExt.SetActorName(componentInChildren.name);
+
+                //Response graph
+                MultipleChoiceNodeExt multipleChoiceNodeExt = graph.AddNode<MultipleChoiceNodeExt>();
+                multipleChoiceNodeExt.availableChoices.Add(new MultipleChoiceNodeExt.Choice
+                {
+                    statement = new Statement
+                    {
+                        text = "I'm listening."
+                    }
+                });
+                multipleChoiceNodeExt.availableChoices.Add(new MultipleChoiceNodeExt.Choice
+                {
+                    statement = new Statement
+                    {
+                        text = "How do I use this power?"
+                    }
+                });
+
+                //Open skill tree
+                ActionNode actionNode = graph.allNodes[1] as ActionNode;
+                (actionNode.action as TrainDialogueAction).Trainer = new BBParameter<Trainer>(componentInChildren2);
+                //Learn skill
+                LearnHarnessBlood learnHarnessBlood = new LearnHarnessBlood();
+                learnHarnessBlood.
+
+                //Organize dialogue
+                //Reset graph
+                graph.allNodes.Clear();
+                //Add Nodes
+                graph.allNodes.Add(statementNodeExt);
+                graph.allNodes.Add(multipleChoiceNodeExt);
+                graph.allNodes.Add(actionNode);
+                graph.allNodes.Add(learnHarnessBlood);
+
+                //Begin graph
+                graph.primeNode = statementNodeExt;
+                //Opening line to -> two options
+                graph.ConnectNodes(statementNodeExt, multipleChoiceNodeExt, -1, -1);
+
+                graph.ConnectNodes(multipleChoiceNodeExt, actionNode, 0, -1);
+                graph.ConnectNodes(multipleChoiceNodeExt, learnHarnessBlood, 1, -1);
+
+
+                trainer.gameObject.SetActive(true);
+            }
+
+            internal static SL_Character trainerTemplate;
         }
 
         
