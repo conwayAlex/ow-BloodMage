@@ -21,7 +21,7 @@ namespace BloodMage
         //Metadata
         public const string GUID = "com.LlamaMage.bloodmage";
         public const string NAME = "Blood Mage";
-        public const string VERSION = "0.1.1";
+        public const string VERSION = "0.9.0";
 
         public static BloodMage Instance;
 

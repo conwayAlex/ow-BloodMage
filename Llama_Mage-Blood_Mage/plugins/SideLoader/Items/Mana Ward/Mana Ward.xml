@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<SL_Skill xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Target_ItemID>8100140</Target_ItemID>
+  <New_ItemID>8100140</New_ItemID>
+  <Name>Mana Ward</Name>
+  <Description>Envelops you in Mana and, for an instant, you become immune to Damage.
+
+Can be combined with other spells for powerful effects.</Description>
+  <LegacyItemID>-1</LegacyItemID>
+  <IsPickable>false</IsPickable>
+  <IsUsable>false</IsUsable>
+  <QtyRemovedOnUse>1</QtyRemovedOnUse>
+  <GroupItemInDisplay>false</GroupItemInDisplay>
+  <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
+  <RepairedInRest>true</RepairedInRest>
+  <BehaviorOnNoDurability>NotSet</BehaviorOnNoDurability>
+  <CastType>Bubble</CastType>
+  <CastModifier>Immobilized</CastModifier>
+  <CastLocomotionEnabled>false</CastLocomotionEnabled>
+  <MobileCastMovementMult>-1</MobileCastMovementMult>
+  <CastSheatheRequired>-1</CastSheatheRequired>
+  <OverrideSellModifier>-1</OverrideSellModifier>
+  <Tags />
+  <ExtensionsEditBehaviour>NONE</ExtensionsEditBehaviour>
+  <ItemExtensions />
+  <EffectBehaviour>NONE</EffectBehaviour>
+  <EffectTransforms>
+    <SL_EffectTransform>
+      <TransformName>Normal HM</TransformName>
+      <Position xsi:nil="true" />
+      <Rotation xsi:nil="true" />
+      <Scale xsi:nil="true" />
+      <ChildEffects>
+        <SL_EffectTransform>
+          <TransformName>Normal H</TransformName>
+          <Position xsi:nil="true" />
+          <Rotation xsi:nil="true" />
+          <Scale xsi:nil="true" />
+          <Effects>
+            <SL_Effect xsi:type="SL_AddStatusEffect">
+              <Delay>0</Delay>
+              <SyncType>OwnerSync</SyncType>
+              <OverrideCategory>None</OverrideCategory>
+              <StatusEffect>HumoursMaintenance</StatusEffect>
+              <ChanceToContract>100</ChanceToContract>
+              <AffectController>false</AffectController>
+              <AdditionalLevel>0</AdditionalLevel>
+              <NoDealer>false</NoDealer>
+            </SL_Effect>
+            <SL_Effect xsi:type="SL_AddStatusEffectBuildUp">
+              <Delay>0</Delay>
+              <SyncType>OwnerSync</SyncType>
+              <OverrideCategory>None</OverrideCategory>
+              <StatusEffect>Hemorrhage</StatusEffect>
+              <Buildup>20</Buildup>
+              <BuildUpMultiplier>1</BuildUpMultiplier>
+              <BypassCounter>false</BypassCounter>
+              <AffectController>false</AffectController>
+            </SL_Effect>
+          </Effects>
+          <EffectConditions>
+            <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+              <Invert>false</Invert>
+              <DiseaseAge>0</DiseaseAge>
+              <CheckOwner>false</CheckOwner>
+              <StatusSelectorType>StatusSpecific</StatusSelectorType>
+              <SelectorValue>Bleeding</SelectorValue>
+            </SL_EffectCondition>
+            <SL_EffectCondition xsi:type="SL_PassiveSkillCondition">
+              <Invert>false</Invert>
+              <ReqSkillID>-28009</ReqSkillID>
+            </SL_EffectCondition>
+          </EffectConditions>
+        </SL_EffectTransform>
+        <SL_EffectTransform>
+          <TransformName>Normal H+</TransformName>
+          <Position xsi:nil="true" />
+          <Rotation xsi:nil="true" />
+          <Scale xsi:nil="true" />
+          <Effects>
+            <SL_Effect xsi:type="SL_AddStatusEffect">
+              <Delay>0</Delay>
+              <SyncType>OwnerSync</SyncType>
+              <OverrideCategory>None</OverrideCategory>
+              <StatusEffect>HumoursMaintenance+</StatusEffect>
+              <ChanceToContract>100</ChanceToContract>
+              <AffectController>false</AffectController>
+              <AdditionalLevel>0</AdditionalLevel>
+              <NoDealer>false</NoDealer>
+            </SL_Effect>
+            <SL_Effect xsi:type="SL_AddStatusEffectBuildUp">
+              <Delay>0</Delay>
+              <SyncType>OwnerSync</SyncType>
+              <OverrideCategory>None</OverrideCategory>
+              <StatusEffect>Hemorrhage</StatusEffect>
+              <Buildup>30</Buildup>
+              <BuildUpMultiplier>1</BuildUpMultiplier>
+              <BypassCounter>false</BypassCounter>
+              <AffectController>false</AffectController>
+            </SL_Effect>
+          </Effects>
+          <EffectConditions>
+            <SL_EffectCondition xsi:type="SL_HasStatusEffectEffectCondition">
+              <Invert>false</Invert>
+              <DiseaseAge>0</DiseaseAge>
+              <CheckOwner>false</CheckOwner>
+              <StatusSelectorType>StatusSpecific</StatusSelectorType>
+              <SelectorValue>Bleeding +</SelectorValue>
+            </SL_EffectCondition>
+            <SL_EffectCondition xsi:type="SL_PassiveSkillCondition">
+              <Invert>false</Invert>
+              <ReqSkillID>-28009</ReqSkillID>
+            </SL_EffectCondition>
+          </EffectConditions>
+        </SL_EffectTransform>
+      </ChildEffects>
+    </SL_EffectTransform>
+  </EffectTransforms>
+  <Cooldown>20</Cooldown>
+  <StaminaCost>0</StaminaCost>
+  <ManaCost>7</ManaCost>
+  <DurabilityCost>0</DurabilityCost>
+  <DurabilityCostPercent>0</DurabilityCostPercent>
+  <VFXOnStart>false</VFXOnStart>
+  <StopStartVFXOnEnd>false</StopStartVFXOnEnd>
+  <StartVFX>VFXForceBubble</StartVFX>
+  <RequiredItems />
+  <HealthCost>0</HealthCost>
+  <RequiredPlayerType>Normal</RequiredPlayerType>
+</SL_Skill>

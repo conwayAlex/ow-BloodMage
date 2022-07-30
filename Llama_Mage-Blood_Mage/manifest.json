@@ -1,0 +1,11 @@
+{
+    "name": "Blood_Mage",
+    "version_number": "0.9.0",
+    "website_url": "https://github.com/conwayAlex/ow-BloodMage",
+    "description": "Become a vile sorcerer of blood.",
+    "dependencies": [
+        "BepInEx-BepInExPack_Outward-5.4.19",
+		"sinai-dev-SideLoader-3.8.4",
+		"SLExtendedEffects-SideLoader_ExtendedEffects-1.1.8"
+    ]
+}

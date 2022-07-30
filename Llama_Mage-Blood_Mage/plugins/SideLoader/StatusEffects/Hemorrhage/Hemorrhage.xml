@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<SL_StatusEffect xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TargetStatusIdentifier>Bleeding</TargetStatusIdentifier>
+  <NewStatusID>-28010</NewStatusID>
+  <StatusIdentifier>Hemorrhage</StatusIdentifier>
+  <Name>Hemorrhage</Name>
+  <Description>Lose [E1V1]% of your health per second.</Description>
+  <Lifespan>5</Lifespan>
+  <RefreshRate>1</RefreshRate>
+  <Purgeable>false</Purgeable>
+  <Priority>1</Priority>
+  <IgnoreBarrier>false</IgnoreBarrier>
+  <BuildupRecoverySpeed>2</BuildupRecoverySpeed>
+  <IgnoreBuildupIfApplied>false</IgnoreBuildupIfApplied>
+  <AmplifiedStatusIdentifier />
+  <RemoveRequiredStatus>false</RemoveRequiredStatus>
+  <NormalizeDamageDisplay>false</NormalizeDamageDisplay>
+  <DisplayedInHUD>true</DisplayedInHUD>
+  <IsHidden>false</IsHidden>
+  <IsMalusEffect>true</IsMalusEffect>
+  <DelayedDestroyTime>0</DelayedDestroyTime>
+  <ActionOnHit>None</ActionOnHit>
+  <FamilyMode>Bind</FamilyMode>
+  <BindFamily>
+    <UID>HemorrhageFamily</UID>
+    <Name>HemorrhageFamily</Name>
+    <StackBehaviour xsi:nil="true" />
+    <MaxStackCount>-1</MaxStackCount>
+    <LengthType>Short</LengthType>
+  </BindFamily>
+  <ReferenceFamilyUID>fKo9pwhyQUyLb3gnwc6h5g</ReferenceFamilyUID>
+  <PlayFXOnActivation>true</PlayFXOnActivation>
+  <FXOffset>
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </FXOffset>
+  <VFXInstantiationType>VFX</VFXInstantiationType>
+  <VFXPrefab>HexBleedingVFX</VFXPrefab>
+  <SpecialSFX>NONE</SpecialSFX>
+  <PlaySpecialFXOnStop>false</PlaySpecialFXOnStop>
+  <EffectBehaviour>Destroy</EffectBehaviour>
+  <Effects>
+    <SL_EffectTransform>
+      <TransformName>Effects</TransformName>
+      <Position xsi:nil="true" />
+      <Rotation xsi:nil="true" />
+      <Scale xsi:nil="true" />
+      <Effects>
+        <SL_Effect xsi:type="SL_AffectHealth">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <AffectQuantity>-5</AffectQuantity>
+          <IsModifier>true</IsModifier>
+          <AffectQuantityAI>-5</AffectQuantityAI>
+          <InformSourceCharacter>false</InformSourceCharacter>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_RemoveStatusEffect">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <CleanseType>StatusSpecific</CleanseType>
+          <SelectorValue>Bleeding</SelectorValue>
+        </SL_Effect>
+        <SL_Effect xsi:type="SL_RemoveStatusEffect">
+          <Delay>0</Delay>
+          <SyncType>OwnerSync</SyncType>
+          <OverrideCategory>None</OverrideCategory>
+          <CleanseType>StatusSpecific</CleanseType>
+          <SelectorValue>Bleeding +</SelectorValue>
+        </SL_Effect>
+      </Effects>
+      <EffectConditions />
+      <ChildEffects />
+    </SL_EffectTransform>
+  </Effects>
+</SL_StatusEffect>
