@@ -21,7 +21,7 @@ namespace BloodMage
         //Metadata
         public const string GUID = "com.LlamaMage.bloodmage";
         public const string NAME = "Blood Mage";
-        public const string VERSION = "0.9.0";
+        public const string VERSION = "0.9.1";
 
         public static BloodMage Instance;
 
@@ -210,17 +210,42 @@ namespace BloodMage
             {
                 if(__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
                 {
-                    __instance.HealthCost = __instance.ManaCost;
-                    __instance.ManaCost = 0;
-                    return true;
+                    if(__instance.GetStaminaCost() > 0f)
+                    {
+                        return true;
+                    }
+
+                    if(__instance.ManaCost != 0f)
+                    {
+                        __instance.m_ownerCharacter.Stats.ReceiveDamage(__instance.ManaCost);
+                    }
+
+                    if(__instance.HealthCost != 0f)
+                    {
+                        __instance.m_ownerCharacter.Stats.ReceiveDamage(__instance.HealthCost);
+                    }
+
+                    return false;
                 }
                 else if(__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineEntanglement))
                 {
-                    float derivedMana = __instance.HealthCost / 2f;
-                    __instance.ManaCost += derivedMana;
-                    float derivedHealth = __instance.ManaCost / 2f;
-                    __instance.HealthCost += derivedHealth;
-                    return true;
+                    if (__instance.ManaCost != 0f)
+                    {
+                        float derivedHealth = __instance.ManaCost / 2f;
+
+                        __instance.m_ownerCharacter.Stats.ReceiveDamage(derivedHealth);
+                        __instance.m_ownerCharacter.Stats.UseMana(null, derivedHealth);
+                    }
+
+                    if(__instance.HealthCost != 0f)
+                    {
+                        float derivedMana = __instance.HealthCost / 2f;
+
+                        __instance.m_ownerCharacter.Stats.ReceiveDamage(derivedMana);
+                        __instance.m_ownerCharacter.Stats.UseMana(null, derivedMana);
+                    }
+
+                    return false;
                 }
                 return true;
             }

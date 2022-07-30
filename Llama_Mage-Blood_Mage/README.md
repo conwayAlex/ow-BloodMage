@@ -1,4 +1,4 @@
-# Blood Mage v0.9.0
+# Blood Mage v0.9.1
 
 Utilize the power of your own life essence to heal yourself and damage your enemies.
 
