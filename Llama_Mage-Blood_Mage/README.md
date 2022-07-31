@@ -69,17 +69,17 @@ Humours Maintanence -> Gain resistance to decay and ethereal damage.
 #### Conjure
 Blood Tide -> Apply decay damage in an area around you, or if extreme bleeding, cause hemorrhage on enemies.
 
-##Changelog
-v0.9.1 - 
+## Changelog
+v0.9.1 
 - Attempt to fix Leyline Abandonment, was unsuccessful.
-v0.9.2 - 
+v0.9.2
 - Leyline Abandonment has been fixed for all normal, non-cheated scenarios
 - Vile Pact will now correctly apply its regeneration effect. In theory, no action by players will be needed, should fix itself on load.
 - Two of the status effects I made for Humours Maintanence were mutually exclusive with their clone, fixed this.
 
 ## Development Plan
 ===v1.0===
--Fix any bugs, address incompatibilities.
+- Fix any bugs, address incompatibilities.
 
 ===v1.1===
 - Skill "Expansion" (More VFX, better behaviors, more relevance of hemorrhage)
