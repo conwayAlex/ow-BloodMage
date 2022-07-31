@@ -22,8 +22,8 @@
   <ActionOnHit>None</ActionOnHit>
   <FamilyMode>Bind</FamilyMode>
   <BindFamily>
-    <UID>qjgoTqwifUOaYF9NlAkJOw</UID>
-    <Name>Possessed</Name>
+    <UID>com.llamamage.bloodmage.HMplus</UID>
+    <Name>HumoursMaintenance+</Name>
     <StackBehaviour>IndependantUnique</StackBehaviour>
     <MaxStackCount>-1</MaxStackCount>
     <LengthType>Short</LengthType>

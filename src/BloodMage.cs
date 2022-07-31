@@ -251,10 +251,30 @@ namespace BloodMage
             }
         }
 
+        [HarmonyPatch(typeof(Skill), nameof(Skill.HasEnoughHealth))]
+        public class LeylinePassivesHealthOverride
+        {
+            static bool Prefix(Skill __instance, bool _tryingToActivate, ref bool __result)
+            {
+                if (__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineEntanglement))
+                {
+                    float derived = __instance.ManaCost / 2f;
+                    __result = (derived >= __instance.m_ownerCharacter.Health);
+
+                    if (!__result && __instance.m_ownerCharacter.CharacterUI && _tryingToActivate)
+                    {
+                        __instance.m_ownerCharacter.CharacterUI.ShowInfoNotificationLoc("Notification_Skill_NotEnoughHealth");
+                    }
+                    return false;
+                }
+                return true;
+            }
+        }
+
         //Leyline Abandonment Patch
-        //Force game to allow casting with 0 mana
+        //Force game to allow casting with 0 mana, logic for entanglement
         [HarmonyPatch(typeof(Skill), nameof(Skill.HasEnoughMana))]
-        public class LeylineAbandonmentManaOverride
+        public class LeylinePassivesManaOverride
         {
             static bool Prefix(Skill __instance, bool _tryingToActivate, ref bool __result)
             {
@@ -263,40 +283,56 @@ namespace BloodMage
                     __result = __instance.HasEnoughHealth(_tryingToActivate);
                     return false;
                 }
+                else if (__instance.m_ownerCharacter.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineEntanglement))
+                {
+                    float derived = (__instance.m_ownerCharacter.Stats) ? __instance.m_ownerCharacter.Stats.GetFinalManaConsumption(null, __instance.ManaCost) : __instance.ManaCost;
+                    __result = (derived / 2f) >= __instance.m_ownerCharacter.Mana;
+
+                    if(!__result && __instance.m_ownerCharacter.CharacterUI && _tryingToActivate)
+                    {
+                        __instance.m_ownerCharacter.CharacterUI.ShowInfoNotificationLoc("Notification_Skill_NotEnoughMana");
+                    }
+                    return false;
+                }
                 return true;
             }
         }
 
         //Leyline Abandonment Patch
         //Disallow restoration of burnt mana set by passive.
-        [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.RestoreBurntMana))]
+        /*[HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.RestoreBurntMana))]
         public class LeylineAbandonmentBurntManaRestoreOverride
         {
             static bool Prefix(CharacterStats __instance)
             {
                 if(__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
                 {
+                    BloodMage.Log.LogMessage($"burnt mana before restore {__instance.m_burntMana}");
+                    __instance.m_burntMana = __instance.m_character.Stats.m_maxManaStat.m_currentValue;
+                    BloodMage.Log.LogMessage($"burnt mana after restore {__instance.m_burntMana}");
                     return false;
                 }
                 return true;
             }
-        }
+        }*/
         
         //Leyline Abandonment Patch
         //Force burnt mana to be 100% of mana while LA learned.
-        [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.IncreaseBurntMana))]
+        /*[HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.IncreaseBurntMana))]
         public class LeylineAbandonmentBurntManaPatch
         {
             static bool Prefix(CharacterStats __instance)
             {
                 if(__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
                 {
-                    __instance.m_burntMana = __instance.MaxMana;
+                    BloodMage.Log.LogMessage($"burnt mana before increase {__instance.m_burntMana}");
+                    __instance.m_burntMana = __instance.m_character.Stats.m_maxManaStat.m_currentValue;
+                    BloodMage.Log.LogMessage($"burnt mana after increase {__instance.m_burntMana}");
                     return false;
                 }
                 return true;
             }
-        }
+        }*/
 
         //Leyline Abandonment Patch
         //Takes players current max mana and gets hp/stam derivation
@@ -307,28 +343,37 @@ namespace BloodMage
         {
             static bool Prefix(CharacterKnowledge __instance, Item _item)
             {
-                if(_item != null)
+                if (_item != null)
                 {
-                    if(_item.ItemID == BloodMage.LeylineAbandonment)
+                    if (_item.ItemID == BloodMage.LeylineAbandonment)
                     {
                         BloodMage.Log.LogMessage("Learning Leyline Abandonment");
-                        float derived = __instance.m_character.Stats.MaxMana * .25f;
-                        BloodMage.Log.LogMessage($"Mana to hp/stam {derived}");
-                        if (derived == 0f)
+                        StatStack statstack;
+
+                        //Learning with mana active
+                        if (__instance.m_character.Stats.m_manaPoint > 0)
                         {
-                            return true;
+                            BloodMage.Log.LogMessage("Reset Mana Points");
+                            //Reset mana points
+                            __instance.m_character.Stats.m_manaPoint = 0;
                         }
 
-                        BloodMage.Log.LogMessage($"Mana current {__instance.m_character.Stats.MaxMana}");
-                        float currentMana = __instance.m_character.Stats.MaxMana;
-                        __instance.m_character.Stats.m_burntMana = __instance.m_character.Stats.MaxMana;
-                        BloodMage.Log.LogMessage($"New burnt Mana current {__instance.m_character.Stats.m_burntMana}");
-
-                        __instance.m_character.Stats.m_maxHealthStat.BaseValue += derived;
-                        __instance.m_character.Stats.m_maxStamina.BaseValue += derived;
+                        BloodMage.Log.LogMessage("Evaluating stat stacks");
+                        //Grab all stat stacks for mana and convert
+                        foreach (var stack in __instance.m_character.Stats.m_maxManaStat.RawStack)
+                        {
+                            //Skip the dedicated mana points stat
+                            if (stack.SourceID.Contains("ManaAugmentation"))
+                            {
+                                continue;
+                            }
+                            //Add hp & stam for a 1/4 of mana added from stacks
+                            statstack = new StatStack(stack.SourceID, stack.RawValue * .25f, null);
+                            __instance.m_character.Stats.m_maxHealthStat.AddRawStack(statstack);
+                            __instance.m_character.Stats.m_maxStamina.AddRawStack(statstack);
+                        }
                     }
                 }
-
                 return true;
             }
         }
@@ -336,30 +381,15 @@ namespace BloodMage
         //Leyline Abandonment Patch
         //Undoes AddItem patch
         //Remove passive patch here?
-
-
-        //Leyline Abandonment Patch
-        //Supress further investment in the leyline.
-        [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.SetManaPoint))]
-        public class LeylineAbandonmentManaPointPatch
+        [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.GiveManaPoint))]
+        public class LeylineAbandonmentGiveManaPointPatch
         {
-            static bool Prefix(CharacterStats __instance)
+            static void Postfix(CharacterStats __instance)
             {
-                if(__instance.m_character)
+                if(__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
                 {
-                    if(__instance.m_character.Inventory)
-                    {
-                        if(__instance.m_character.Inventory.SkillKnowledge)
-                        {
-                            if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
-                            {
-                                BloodMage.Log.LogMessage("Mana points suppressed.");
-                                return false;
-                            }
-                        }
-                    }
+                    __instance.m_manaPoint = 0;
                 }
-                return true;
             }
         }
 
@@ -368,44 +398,22 @@ namespace BloodMage
         [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.AddStatStack))]
         public class LeylineAbandonmentAddStackPatch
         {
-            static void Postfix(CharacterStats __instance, Tag _stat, StatStack _stack, bool _multiplier)
+            static bool Prefix(CharacterStats __instance, Tag _stat, StatStack _stack, bool _multiplier)
             {
                 if (_stat.TagName == "MaxMana")
                 {
-                    if (__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
-                    {
-                        __instance.m_burntMana = __instance.MaxMana;
-
-                        float derived = _stack.RawValue * .25f; //20 mana -> 5 hp and 5 stamina, 1/4 of 20
-                        BloodMage.Log.LogMessage($"Health/stamina derived {derived}");
-                        __instance.m_character.Stats.m_maxHealthStat.BaseValue = __instance.m_character.Stats.m_maxHealthStat.BaseValue + derived;
-                        __instance.m_character.Stats.m_maxStamina.BaseValue = __instance.m_character.Stats.m_maxStamina.BaseValue + derived;
-                    }
-                }
-            }
-        }
-
-        //Leyline Abandonment Patch
-        //Undo stat fiddlings from the adding patch.
-        [HarmonyPatch(typeof(CharacterStats), nameof(CharacterStats.RemoveStatStack))]
-        public class LeylineAbandonmentStackRemovePatch
-        {
-            static void Prefix(CharacterStats __instance, Tag _stat, string _sourceID, bool _multiplier)
-            {
-                if(_stat.TagName == "MaxMana")
-                {
                     if(__instance.m_character.Inventory.SkillKnowledge.IsItemLearned(BloodMage.LeylineAbandonment))
                     {
-                        StatStack stack = __instance.m_maxManaStat.m_rawStack[_sourceID];
+                        float derived = _stack.RawValue * .25f; //20 mana -> 5 hp and 5 stamina, 1/4 of 20
 
-                        float derived = stack.RawValue * .25f;
+                        StatStack statstack = new StatStack(_stack.SourceID, derived, null);
+                        __instance.m_character.Stats.m_maxHealthStat.AddRawStack(statstack);
+                        __instance.m_character.Stats.m_maxStamina.AddRawStack(statstack);
 
-                        __instance.m_character.Stats.m_maxHealthStat.BaseValue = __instance.m_character.Stats.m_maxHealthStat.BaseValue - derived;
-                        __instance.m_character.Stats.m_maxStamina.BaseValue = __instance.m_character.Stats.m_maxStamina.BaseValue - derived;
-
-                        __instance.m_burntMana = __instance.MaxMana;
                     }
                 }
+
+                return true;
             }
         }
     }

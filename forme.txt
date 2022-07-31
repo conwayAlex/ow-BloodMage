@@ -17,3 +17,7 @@ Hemorrhage -28010
 Vile Pact Regeration -28011
 Humours Maintenance -28012
 Humours Maintenance + -28013
+
+
+
+On average, Unknown Arena fights for the top end of builds take 90-120 seconds, so we can do the math for a 90 second fight. If you want to kill in 2 hemmorhages, you will want it to take around 40 seconds to build up, and then 5 to deal the damage. Over 40 seconds you lose 160% buildup, so you need 260% total buildup ish to proc. Conjure has an 8s cooldown, so each of your casts needs ~43% buildup

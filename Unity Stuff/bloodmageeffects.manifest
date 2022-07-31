@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4194331008
+CRC: 3889704363
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0a53a5a0922096f137ac60c6503134b6
+    Hash: e30961fe385b4222a04e42e9ae941502
   TypeTreeHash:
     serializedVersion: 2
     Hash: 56eaf4554d4ba49c5e898b9d45072e50
@@ -35,8 +35,10 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
+- Assets/LifeSiphon/LifeSiphon.prefab
 - Assets/Word Spells/WordSpellHarm.prefab
 - Assets/Word Spells/WordSpellExchange.prefab
 - Assets/Blood Mist/BloodMistEffect.prefab
 - Assets/Word Spells/WordSpellManipulate.prefab
+- Assets/ManipulateCast/ManipulateCast.prefab
 Dependencies: []

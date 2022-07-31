@@ -4,7 +4,7 @@
   <NewStatusID>-28011</NewStatusID>
   <StatusIdentifier>VilePactRegen</StatusIdentifier>
   <Name>Vile Pact Regeneration</Name>
-  <Description>Regenerate a % of your max health per second.</Description>
+  <Description>Regenerate a +[E1V1]% of your max health per second.</Description>
   <Lifespan>-1</Lifespan>
   <RefreshRate>1</RefreshRate>
   <Purgeable>false</Purgeable>
@@ -20,8 +20,14 @@
   <IsMalusEffect>false</IsMalusEffect>
   <DelayedDestroyTime>0</DelayedDestroyTime>
   <ActionOnHit>None</ActionOnHit>
-  <FamilyMode>Reference</FamilyMode>
-  <ReferenceFamilyUID>fKo9pwhyQUyLb3gnwc6h5g</ReferenceFamilyUID>
+  <FamilyMode>Bind</FamilyMode>
+  <BindFamily>
+    <UID>com.llamamage.bloodmage.vilepactregen</UID>
+    <Name>VilePactRegenFamily</Name>
+    <StackBehaviour>IndependantUnique</StackBehaviour>
+    <MaxStackCount>-1</MaxStackCount>
+    <LengthType>Long</LengthType>
+  </BindFamily>
   <PlayFXOnActivation>false</PlayFXOnActivation>
   <FXOffset>
     <x>0</x>
@@ -35,7 +41,7 @@
   <EffectBehaviour>Destroy</EffectBehaviour>
   <Effects>
     <SL_EffectTransform>
-      <TransformName>Normal</TransformName>
+      <TransformName>Effects</TransformName>
       <Position xsi:nil="true" />
       <Rotation xsi:nil="true" />
       <Scale xsi:nil="true" />
@@ -46,7 +52,7 @@
           <OverrideCategory>None</OverrideCategory>
           <AffectQuantity>0.1</AffectQuantity>
           <IsModifier>true</IsModifier>
-          <AffectQuantityAI>0</AffectQuantityAI>
+          <AffectQuantityAI>-1</AffectQuantityAI>
           <InformSourceCharacter>false</InformSourceCharacter>
         </SL_Effect>
       </Effects>
